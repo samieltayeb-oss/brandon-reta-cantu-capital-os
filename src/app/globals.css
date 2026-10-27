@@ -1,0 +1,12 @@
+@import "tailwindcss";
+
+:root {
+  --font-familjen: 'Familjen Grotesk', sans-serif;
+  --font-hanken: 'Hanken Grotesk', sans-serif;
+  --font-cormorant: 'Cormorant Garamond', serif;
+  --font-jetbrains: 'JetBrains Mono', monospace;
+}
+
+body {
+  font-family: var(--font-hanken), system-ui, sans-serif;
+}
