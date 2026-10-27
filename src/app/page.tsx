@@ -32,7 +32,7 @@ interface AIBriefResponse {
 }
 
 export default function LuxuryLandingPage() {
-  const [activeTheme, setActiveTheme] = useState<BrandTheme>(BRAND_THEMES[0]);
+  const [activeTheme, setActiveTheme] = useState<BrandTheme>(BRAND_THEMES[4]);
   const [showBrandDrawer, setShowBrandDrawer] = useState(false);
 
   // Calculator state
@@ -466,18 +466,40 @@ export default function LuxuryLandingPage() {
               </div>
             </div>
 
-            {/* Right Architectural Feature Stack (Source of Truth 01/03 Card + Executive Dossier) */}
-            <div className="relative flex min-h-[450px] items-center justify-center lg:justify-end">
+            {/* Right Architectural Feature Stack (Authentic Florida Photography + Source of Truth 01/03 Card + Executive Dossier) */}
+            <div className="relative flex min-h-[480px] items-center justify-center lg:justify-end">
               <div
                 style={{ borderColor: `${activeTheme.primary}45` }}
                 className="absolute right-2 top-2 h-64 w-64 rounded-full border sm:right-14 sm:top-6 pointer-events-none"
               />
-              <div
-                style={{ backgroundColor: `${activeTheme.primary}18` }}
-                className="absolute right-0 top-24 h-48 w-48 sm:right-6 pointer-events-none"
-              />
 
-              <div className="relative z-10 w-full max-w-md space-y-4">
+              <div className="relative z-10 w-full max-w-lg space-y-4">
+                {/* Authentic Sarasota/Brickell Editorial Advisory Photo */}
+                <div
+                  style={{ borderColor: activeTheme.border }}
+                  className="relative overflow-hidden border shadow-2xl group"
+                >
+                  <img
+                    src="/images/hero-florida-advisor.jpg"
+                    alt="Florida Commercial Funding Advisory Consultation"
+                    className="h-72 sm:h-80 w-full object-cover object-center transition-transform duration-700 group-hover:scale-103"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-transparent" />
+                  <div className="absolute bottom-4 left-5 right-5 flex items-end justify-between text-white">
+                    <div>
+                      <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#C8A96A] block">
+                        SARASOTA · TAMPA · MIAMI · ORLANDO
+                      </span>
+                      <p className="text-sm font-bold mt-0.5">
+                        One-on-One Commercial Capital Guidance
+                      </p>
+                    </div>
+                    <span className="font-mono text-[10px] bg-black/60 backdrop-blur-xs px-2.5 py-1 border border-white/20">
+                      $25K – $500K+
+                    </span>
+                  </div>
+                </div>
+
                 {/* Source of Truth Accent Card */}
                 <div
                   style={{
@@ -485,20 +507,20 @@ export default function LuxuryLandingPage() {
                     color: activeTheme.accentFg,
                     borderTop: `3px solid ${activeTheme.gold}`,
                   }}
-                  className="p-8 shadow-2xl"
+                  className="p-7 shadow-2xl"
                 >
-                  <div className="mb-10 flex items-center justify-between text-xs font-mono font-bold uppercase tracking-[0.2em]">
+                  <div className="mb-5 flex items-center justify-between text-xs font-mono font-bold uppercase tracking-[0.2em]">
                     <span>One application</span>
                     <span style={{ color: activeTheme.gold }}>01 / 03</span>
                   </div>
                   <p
                     style={{ fontFamily: activeTheme.headingFont }}
-                    className="text-3xl font-bold leading-tight"
+                    className="text-2xl sm:text-3xl font-bold leading-tight"
                   >
                     More clarity. More confidence. More room to grow.
                   </p>
-                  <div className="mt-7 h-px bg-white/25" />
-                  <p className="mt-4 text-sm leading-6 opacity-85">
+                  <div className="mt-5 h-px bg-white/25" />
+                  <p className="mt-3.5 text-sm leading-6 opacity-85">
                     Start with one application and take the next step with a
                     clearer view of your options.
                   </p>
@@ -510,13 +532,13 @@ export default function LuxuryLandingPage() {
                     backgroundColor: activeTheme.card,
                     borderColor: activeTheme.border,
                   }}
-                  className="border p-5 shadow-md flex items-center justify-between gap-4"
+                  className="border p-4 shadow-md flex items-center justify-between gap-4"
                 >
                   <div className="flex items-center gap-3.5">
                     <BrandLogoMark conceptId={activeTheme.id} size={40} />
                     <div>
                       <p className="text-xs font-mono uppercase tracking-wider opacity-70">
-                        Verified Funding Specialist
+                        Independent Referral Specialist
                       </p>
                       <p
                         style={{ fontFamily: activeTheme.headingFont }}
@@ -528,7 +550,7 @@ export default function LuxuryLandingPage() {
                         style={{ color: activeTheme.muted }}
                         className="text-xs font-mono"
                       >
-                        Agent ID {CLIENT_TRUTH.agentId} · Bank Breezy Partner
+                        Agent ID {CLIENT_TRUTH.agentId} · {CLIENT_TRUTH.phone}
                       </p>
                     </div>
                   </div>
@@ -736,6 +758,61 @@ export default function LuxuryLandingPage() {
                   </div>
                 </div>
               ))}
+            </div>
+
+            {/* FLORIDA COMMERCIAL REALITIES PHOTO SHOWCASE (SBA 7(a)/504 Top Verticals) */}
+            <div className="mt-12 grid gap-6 lg:grid-cols-2">
+              <div className="relative overflow-hidden border border-white/20 group">
+                <img
+                  src="/images/florida-contractor-fleet.jpg"
+                  alt="Florida Commercial HVAC, Roofing and Specialty Trades Fleet"
+                  className="h-72 w-full object-cover object-center transition-transform duration-700 group-hover:scale-103"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
+                <div className="absolute bottom-5 left-6 right-6 text-white">
+                  <span
+                    style={{ color: activeTheme.gold }}
+                    className="font-mono text-[10px] uppercase tracking-[0.2em]"
+                  >
+                    FLORIDA TRADES · HVAC, ROOFING, AUTO &amp; FLEET (NAICS 238220 / 238160)
+                  </span>
+                  <h3
+                    style={{ fontFamily: activeTheme.headingFont }}
+                    className="text-2xl font-bold mt-1"
+                  >
+                    Service Vehicles, Equipment &amp; Project Mobilization
+                  </h3>
+                  <p className="text-xs text-white/80 mt-1.5 leading-5">
+                    Add service vans, stock condenser &amp; roofing inventory, or bridge commercial job draws without slowing down your crews.
+                  </p>
+                </div>
+              </div>
+
+              <div className="relative overflow-hidden border border-white/20 group">
+                <img
+                  src="/images/florida-medical-hospitality.jpg"
+                  alt="Florida Hospitality, Restaurants and Private Medical Practices"
+                  className="h-72 w-full object-cover object-center transition-transform duration-700 group-hover:scale-103"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
+                <div className="absolute bottom-5 left-6 right-6 text-white">
+                  <span
+                    style={{ color: activeTheme.gold }}
+                    className="font-mono text-[10px] uppercase tracking-[0.2em]"
+                  >
+                    HOSPITALITY, RESTAURANTS &amp; CLINICS (NAICS 722511 / 621111 / 621210)
+                  </span>
+                  <h3
+                    style={{ fontFamily: activeTheme.headingFont }}
+                    className="text-2xl font-bold mt-1"
+                  >
+                    Second Locations, Kitchen Buildouts &amp; Seasonal Liquidity
+                  </h3>
+                  <p className="text-xs text-white/80 mt-1.5 leading-5">
+                    Prepare for Florida peak season, upgrade clinical or kitchen equipment, and expand across Sarasota, Tampa, Miami, and Orlando.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -1387,16 +1464,29 @@ export default function LuxuryLandingPage() {
           className="border-t px-5 py-12 lg:px-8"
         >
           <div className="mx-auto flex max-w-7xl flex-col justify-between gap-6 text-xs leading-5 md:flex-row">
-            <div className="max-w-2xl space-y-2">
+            <div className="max-w-3xl space-y-2.5">
               <p style={{ color: activeTheme.muted }}>
                 Funding decisions are made by participating funders and are
                 subject to credit, business, and bank verification. Brandon
                 Reta-Cantu and referring partners do not guarantee or underwrite
                 funding services.
               </p>
+              <p
+                style={{ color: activeTheme.muted }}
+                className="text-[11px] leading-4 opacity-80"
+              >
+                <strong>Regulatory Disclosure:</strong> Brandon Reta-Cantu (Agent ID{" "}
+                {CLIENT_TRUTH.agentId}) is an independent commercial funding
+                referral specialist and is not a bank, direct lender, or
+                underwriter. Services and any funding obtained are intended
+                solely for commercial or business purposes—not for personal,
+                family, or household use. No advance broker fees are charged to
+                applicants. Compensation may be paid by participating funders
+                upon closing.
+              </p>
               <p className="font-mono text-[11px] opacity-65">
                 Agent ID {CLIENT_TRUTH.agentId} · {CLIENT_TRUTH.phone} ·{" "}
-                {CLIENT_TRUTH.email} · Powered by NEXORA Capital OS
+                {CLIENT_TRUTH.email} · Identity System: 05 · The Palm &amp; Pillar Atelier
               </p>
             </div>
             <div className="shrink-0 md:text-right">
