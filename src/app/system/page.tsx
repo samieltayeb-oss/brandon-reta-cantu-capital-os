@@ -214,13 +214,13 @@ export default function NexoraCommandSystem() {
 
         <div className="relative z-10 mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-5 py-6 lg:px-8">
           <div className="flex items-center gap-4">
-            <BrandLogoMark conceptId="palm-pillar" size={46} />
+            <BrandLogoMark conceptId="sovereign-crest" size={46} />
             <div>
               <div className="flex flex-wrap items-center gap-2">
-                <span className="font-mono text-[10px] font-bold uppercase tracking-widest bg-[#9A5B42] text-white px-2.5 py-0.5">
-                  THE PALM &amp; PILLAR ATELIER · CONCEPT 05
+                <span className="font-mono text-[10px] font-bold uppercase tracking-widest bg-[#85303E] text-white px-2.5 py-0.5">
+                  THE SOVEREIGN CREST · CONCEPT 01 (SELECTED)
                 </span>
-                <span className="font-mono text-[11px] text-[#D6D0C8]">
+                <span className="font-mono text-[11px] text-[#C8A96A]">
                   NEXORA FLORIDA GEO-LEAD &amp; AI UNDERWRITING OS
                 </span>
               </div>
@@ -240,7 +240,7 @@ export default function NexoraCommandSystem() {
                 }`}
               />
               <span className="text-white/70">AI Engine:</span>
-              <span className="text-[#D6D0C8] font-semibold">
+              <span className="text-[#C8A96A] font-semibold">
                 ai.mongodb.com ({aiHealth?.model || "voyage-finance-2"})
               </span>
             </div>
@@ -251,13 +251,13 @@ export default function NexoraCommandSystem() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 bg-black/50 hover:bg-black/70 border border-white/20 px-3.5 py-2 text-xs font-mono uppercase tracking-wider"
             >
-              <FileText className="w-3.5 h-3.5 text-[#9A5B42]" />
+              <FileText className="w-3.5 h-3.5 text-[#C8A96A]" />
               5 Brand Concepts PDF
             </a>
 
             <Link
               href="/"
-              className="inline-flex items-center gap-1.5 bg-[#9A5B42] hover:bg-[#b0694d] text-white px-4 py-2 text-xs font-bold uppercase tracking-wider"
+              className="inline-flex items-center gap-1.5 bg-[#85303E] hover:bg-[#9c3949] text-white px-4 py-2 text-xs font-bold uppercase tracking-wider"
             >
               <ArrowLeft className="w-3.5 h-3.5" />
               Luxury Landing Page
@@ -267,14 +267,14 @@ export default function NexoraCommandSystem() {
       </header>
 
       {/* SUB-NAVIGATION TABS & METRICS BAR */}
-      <div className="border-b border-white/10 bg-[#1C1917] px-5 lg:px-8">
+      <div className="border-b border-white/10 bg-[#1E1518] px-5 lg:px-8">
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4">
           <div className="flex items-center gap-1 overflow-x-auto py-2">
             <button
               onClick={() => setActiveTab("scanner")}
               className={`px-4 py-2 text-xs font-mono uppercase tracking-wider cursor-pointer transition-colors ${
                 activeTab === "scanner"
-                  ? "bg-[#9A5B42] text-white font-bold"
+                  ? "bg-[#85303E] text-white font-bold"
                   : "text-white/65 hover:text-white hover:bg-white/5"
               }`}
             >
@@ -284,7 +284,7 @@ export default function NexoraCommandSystem() {
               onClick={() => setActiveTab("pipeline")}
               className={`px-4 py-2 text-xs font-mono uppercase tracking-wider cursor-pointer transition-colors ${
                 activeTab === "pipeline"
-                  ? "bg-[#9A5B42] text-white font-bold"
+                  ? "bg-[#85303E] text-white font-bold"
                   : "text-white/65 hover:text-white hover:bg-white/5"
               }`}
             >
@@ -294,17 +294,17 @@ export default function NexoraCommandSystem() {
               onClick={() => setActiveTab("brands")}
               className={`px-4 py-2 text-xs font-mono uppercase tracking-wider cursor-pointer transition-colors ${
                 activeTab === "brands"
-                  ? "bg-[#9A5B42] text-white font-bold"
+                  ? "bg-[#85303E] text-white font-bold"
                   : "text-white/65 hover:text-white hover:bg-white/5"
               }`}
             >
-              3. Brand Identity Studio (Concept #5 Active)
+              3. Brand Identity Studio (Concept #1 Selected)
             </button>
             <button
               onClick={() => setActiveTab("compliance")}
               className={`px-4 py-2 text-xs font-mono uppercase tracking-wider cursor-pointer transition-colors ${
                 activeTab === "compliance"
-                  ? "bg-[#9A5B42] text-white font-bold"
+                  ? "bg-[#85303E] text-white font-bold"
                   : "text-white/65 hover:text-white hover:bg-white/5"
               }`}
             >
@@ -314,7 +314,7 @@ export default function NexoraCommandSystem() {
               onClick={() => setActiveTab("inquiries")}
               className={`px-4 py-2 text-xs font-mono uppercase tracking-wider cursor-pointer transition-colors ${
                 activeTab === "inquiries"
-                  ? "bg-[#9A5B42] text-white font-bold"
+                  ? "bg-[#85303E] text-white font-bold"
                   : "text-white/65 hover:text-white hover:bg-white/5"
               }`}
             >
@@ -327,7 +327,7 @@ export default function NexoraCommandSystem() {
               Advisor: <strong className="text-white">{CLIENT_TRUTH.name}</strong>
             </span>
             <span>
-              ID: <strong className="text-[#9A5B42]">{CLIENT_TRUTH.agentId}</strong>
+              ID: <strong className="text-[#C8A96A]">{CLIENT_TRUTH.agentId}</strong>
             </span>
             <span>
               Direct: <strong className="text-white">{CLIENT_TRUTH.phone}</strong>
@@ -782,22 +782,22 @@ export default function NexoraCommandSystem() {
         {/* TAB 3: 5 BRAND IDENTITY SYSTEMS */}
         {activeTab === "brands" && (
           <div className="space-y-6">
-            <div className="border border-[#9A5B42]/60 bg-[#1C1917] p-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div className="border border-[#C8A96A]/60 bg-[#1C1917] p-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
               <div>
-                <span className="font-mono text-xs uppercase tracking-widest text-[#9A5B42]">
-                  ACTIVE MASTER IDENTITY: CONCEPT 05 · THE PALM &amp; PILLAR ATELIER
+                <span className="font-mono text-xs uppercase tracking-widest text-[#C8A96A]">
+                  SELECTED MASTER IDENTITY: CONCEPT 01 · THE SOVEREIGN CREST
                 </span>
                 <h2 className="text-2xl font-extrabold mt-1">
                   5 Complete Logo &amp; Brand Identity Systems
                 </h2>
                 <p className="text-sm text-white/70 mt-1 max-w-2xl">
-                  Concept 05 (The Palm &amp; Pillar Atelier) is currently set as the default master brand across the platform until Brandon selects otherwise.
+                  Concept 01 (The Sovereign Crest — Imperial Crimson #85303E, Executive Slate #33415C &amp; Reserve Gold #C8A96A) is locked in as Brandon’s official brand system.
                 </p>
               </div>
               <a
                 href="/Brandon_Reta_Cantu_5_Brand_Concepts_NEXORA.pdf"
                 download
-                className="bg-[#9A5B42] text-white px-5 py-3 text-xs font-mono font-bold uppercase tracking-wider inline-flex items-center gap-2 shrink-0"
+                className="bg-[#85303E] text-white px-5 py-3 text-xs font-mono font-bold uppercase tracking-wider inline-flex items-center gap-2 shrink-0"
               >
                 <Download className="w-4 h-4" />
                 Download 5-Concept PDF
@@ -809,8 +809,8 @@ export default function NexoraCommandSystem() {
                 <div
                   key={theme.id}
                   className={`border bg-[#1C1917] overflow-hidden flex flex-col justify-between ${
-                    theme.id === "palm-pillar"
-                      ? "border-[#9A5B42] ring-1 ring-[#9A5B42]"
+                    theme.id === "sovereign-crest"
+                      ? "border-[#C8A96A] ring-1 ring-[#C8A96A]"
                       : "border-white/15"
                   }`}
                 >
@@ -840,9 +840,9 @@ export default function NexoraCommandSystem() {
 
                     <div className="p-5 space-y-3">
                       <div className="flex items-center justify-between">
-                        <span className="font-mono text-xs text-[#9A5B42]">
+                        <span className="font-mono text-xs text-[#C8A96A]">
                           CONCEPT {theme.number}{" "}
-                          {theme.id === "palm-pillar" ? "(DEFAULT ACTIVE)" : ""}
+                          {theme.id === "sovereign-crest" ? "(OFFICIAL SELECTED)" : ""}
                         </span>
                         <div className="flex gap-1.5">
                           {[

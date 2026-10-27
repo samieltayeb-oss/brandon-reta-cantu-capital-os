@@ -32,7 +32,7 @@ interface AIBriefResponse {
 }
 
 export default function LuxuryLandingPage() {
-  const [activeTheme, setActiveTheme] = useState<BrandTheme>(BRAND_THEMES[4]);
+  const [activeTheme, setActiveTheme] = useState<BrandTheme>(BRAND_THEMES[0]);
   const [showBrandDrawer, setShowBrandDrawer] = useState(false);
 
   // Calculator state
@@ -1486,7 +1486,7 @@ export default function LuxuryLandingPage() {
               </p>
               <p className="font-mono text-[11px] opacity-65">
                 Agent ID {CLIENT_TRUTH.agentId} · {CLIENT_TRUTH.phone} ·{" "}
-                {CLIENT_TRUTH.email} · Identity System: 05 · The Palm &amp; Pillar Atelier
+                {CLIENT_TRUTH.email} · Identity System: 01 · The Sovereign Crest
               </p>
             </div>
             <div className="shrink-0 md:text-right">
