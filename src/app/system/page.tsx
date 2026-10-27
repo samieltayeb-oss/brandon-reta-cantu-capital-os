@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { BRAND_THEMES, CLIENT_TRUTH } from "@/lib/brand-themes";
 import { BrandLogoMark } from "@/components/BrandLogoMark";
+import { SovereignVaultGate } from "@/components/SovereignVaultGate";
 import type { FloridaLead } from "@/app/api/leads/route";
 import {
   MapPin,
@@ -26,6 +27,7 @@ import {
   Trash2,
   Terminal,
   Briefcase,
+  Lock,
 } from "lucide-react";
 
 const FLORIDA_CITIES = [
@@ -233,6 +235,7 @@ export default function NexoraCommandSystem() {
 
   const [inquiries, setInquiries] = useState<Array<Record<string, unknown>>>([]);
   const [copiedId, setCopiedId] = useState<string | null>(null);
+  const [isVaultUnlocked, setIsVaultUnlocked] = useState(false);
 
   useEffect(() => {
     fetch("/api/ai-status")
@@ -450,6 +453,10 @@ export default function NexoraCommandSystem() {
       0
     );
 
+  if (!isVaultUnlocked) {
+    return <SovereignVaultGate onUnlock={() => setIsVaultUnlocked(true)} />;
+  }
+
   return (
     <div className="min-h-screen bg-[#12100E] text-[#F4EFEA] pb-16">
       {/* TOP COMMAND HEADER WITH REALISTIC SARASOTA BAY AERIAL BANNER */}
@@ -495,6 +502,22 @@ export default function NexoraCommandSystem() {
                 {aiHealth?.model || "voyage-finance-2"}
               </span>
             </div>
+
+            <Link
+              href="/proposal"
+              className="inline-flex items-center gap-1.5 bg-black/50 hover:bg-black/75 border border-[#C8A96A]/50 text-[#C8A96A] px-3 py-2 text-xs font-mono uppercase tracking-wider"
+            >
+              <FileText className="w-3.5 h-3.5" />
+              Proposal
+            </Link>
+
+            <button
+              onClick={() => setIsVaultUnlocked(false)}
+              className="inline-flex items-center gap-1.5 bg-black/50 hover:bg-black/75 border border-white/20 text-white/80 px-3 py-2 text-xs font-mono uppercase tracking-wider cursor-pointer"
+            >
+              <Lock className="w-3.5 h-3.5 text-[#C8A96A]" />
+              Lock Vault
+            </button>
 
             <Link
               href="/"
