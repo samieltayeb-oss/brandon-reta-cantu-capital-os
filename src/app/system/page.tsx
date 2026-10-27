@@ -503,14 +503,6 @@ export default function NexoraCommandSystem() {
               </span>
             </div>
 
-            <Link
-              href="/proposal"
-              className="inline-flex items-center gap-1.5 bg-black/50 hover:bg-black/75 border border-[#C8A96A]/50 text-[#C8A96A] px-3 py-2 text-xs font-mono uppercase tracking-wider"
-            >
-              <FileText className="w-3.5 h-3.5" />
-              Proposal
-            </Link>
-
             <button
               onClick={() => setIsVaultUnlocked(false)}
               className="inline-flex items-center gap-1.5 bg-black/50 hover:bg-black/75 border border-white/20 text-white/80 px-3 py-2 text-xs font-mono uppercase tracking-wider cursor-pointer"

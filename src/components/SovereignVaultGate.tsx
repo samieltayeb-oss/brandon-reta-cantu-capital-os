@@ -126,13 +126,6 @@ export function SovereignVaultGate({ onUnlock }: SovereignVaultGateProps) {
 
           <div className="flex items-center gap-3">
             <Link
-              href="/proposal"
-              className="hidden sm:inline-flex items-center gap-1.5 border border-[#C8A96A]/35 bg-[#C8A96A]/10 hover:bg-[#C8A96A]/20 text-[#C8A96A] px-3.5 py-2 text-xs font-mono uppercase tracking-wider transition-colors"
-            >
-              <FileText className="w-3.5 h-3.5" />
-              Commercial Proposal
-            </Link>
-            <Link
               href="/"
               className="inline-flex items-center gap-1.5 bg-[#85303E] hover:bg-[#9c3949] text-white px-4 py-2 text-xs font-bold uppercase tracking-wider transition-colors"
             >
@@ -349,18 +342,8 @@ export function SovereignVaultGate({ onUnlock }: SovereignVaultGateProps) {
             </form>
 
             {/* Quick Links Card */}
-            <div className="border border-white/10 bg-[#171413] p-4 space-y-2.5">
+            <div className="border border-white/10 bg-[#171413] p-4">
               <div className="flex items-center justify-between text-xs font-mono">
-                <span className="text-white/60">Executive Deliverable:</span>
-                <Link
-                  href="/proposal"
-                  className="text-[#C8A96A] hover:underline inline-flex items-center gap-1 font-bold"
-                >
-                  View Commercial Proposal
-                  <ArrowUpRight className="w-3.5 h-3.5" />
-                </Link>
-              </div>
-              <div className="flex items-center justify-between text-xs font-mono border-t border-white/10 pt-2.5">
                 <span className="text-white/60">Direct Application Link:</span>
                 <a
                   href={CLIENT_TRUTH.applicationUrl}
