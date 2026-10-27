@@ -4,6 +4,9 @@ node_modules
 .env.local
 .vercel
 *.log
+tools/gosom/*.exe
+tools/gosom/webdata
+
 
 .vercel
 .env*

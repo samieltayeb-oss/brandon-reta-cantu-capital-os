@@ -21,6 +21,11 @@ import {
   RefreshCw,
   ShieldAlert,
   CheckSquare,
+  DollarSign,
+  Plus,
+  Trash2,
+  Terminal,
+  Briefcase,
 } from "lucide-react";
 
 const FLORIDA_CITIES = [
@@ -52,6 +57,133 @@ const BUSINESS_CATEGORIES = [
   "15. Boutique Hotels & Coastal Hospitality (NAICS 721110)",
 ];
 
+export type CrmStage =
+  | "New Lead"
+  | "Outreach Sent"
+  | "Bank Breezy App Sent"
+  | "Underwriting / Offer"
+  | "Funded & Closed";
+
+const CRM_STAGES: CrmStage[] = [
+  "New Lead",
+  "Outreach Sent",
+  "Bank Breezy App Sent",
+  "Underwriting / Offer",
+  "Funded & Closed",
+];
+
+export interface CrmDeal extends FloridaLead {
+  stage: CrmStage;
+  dealValue: number;
+  commissionPct: number;
+  notes: string;
+  consentVerified: boolean;
+  dncCleared: boolean;
+  lastTouchAt: string;
+}
+
+const DEFAULT_SEEDED_CRM_DEALS: CrmDeal[] = [
+  {
+    id: "crm-seed-1",
+    name: "Gulf Coast Precision HVAC & Mechanical",
+    category: "1. HVAC & Plumbing Contractors (NAICS 238220)",
+    naicsCode: "238220",
+    city: "Sarasota, FL",
+    address: "1840 Fruitville Rd, Sarasota, FL 34236",
+    phone: "(941) 365-4820",
+    website: "https://gulfcoasthvacfl.com",
+    email: "dispatch@gulfcoasthvacfl.com",
+    lat: 27.3368,
+    lon: -82.5321,
+    estimatedCapitalNeed: "$75,000 – $250,000",
+    sbaMedianTicket: "$150,000",
+    recommendedProduct: "Service Van Fleet & Condenser Inventory Line",
+    buyingSignals: "3 new mechanical permits filed in Sarasota County; adding 2 service vans",
+    aiScore: 95,
+    aiReasoning: "95/100 Fit via Voyage Finance-2. High summer HVAC demand in 941 area code.",
+    googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=Gulf+Coast+Precision+HVAC+Sarasota+FL",
+    osmUrl: "https://www.openstreetmap.org/?mlat=27.3368&mlon=-82.5321#map=16/27.3368/-82.5321",
+    outreachPitch: "Hi Gulf Coast Precision HVAC Team — I help Sarasota contractors compare equipment & working capital options through one simple Bank Breezy application: https://bankbreezy.com/funding/brandonretacantu",
+    smsDraft: "Hi Gulf Coast HVAC, Brandon Reta-Cantu here ((941) 289-8661). Here is the single-application Bank Breezy link we discussed: https://bankbreezy.com/funding/brandonretacantu Reply STOP to opt out.",
+    coldCallOpener: "Hi, this is Brandon Reta-Cantu here in Florida...",
+    emailBreakup: "Closing the loop for Gulf Coast Precision HVAC...",
+    source: "Florida Verified Registry",
+    stage: "Bank Breezy App Sent",
+    dealValue: 120000,
+    commissionPct: 7,
+    notes: "Owner Mark requested $120K for 2 Ford Transit vans + Carrier AC inventory. Sent Bank Breezy link.",
+    consentVerified: true,
+    dncCleared: true,
+    lastTouchAt: "Today, 10:15 AM",
+  },
+  {
+    id: "crm-seed-2",
+    name: "Ringling Boulevard Dental & Implant Studio",
+    category: "11. Dental Practices & Orthodontics (NAICS 621210)",
+    naicsCode: "621210",
+    city: "Sarasota, FL",
+    address: "2055 Main St, Sarasota, FL 34237",
+    phone: "(941) 366-8140",
+    website: "https://ringlingdentalstudio.com",
+    email: "office@ringlingdentalstudio.com",
+    lat: 27.3359,
+    lon: -82.5284,
+    estimatedCapitalNeed: "$100,000 – $350,000",
+    sbaMedianTicket: "$356,000",
+    recommendedProduct: "CBCT 3D Imaging & Operatory Expansion Financing",
+    buyingSignals: "Expanding 2 new operatories on Main St",
+    aiScore: 93,
+    aiReasoning: "93/100 Fit. High-revenue Sarasota dental practice with low default profile.",
+    googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=Ringling+Boulevard+Dental+Sarasota+FL",
+    osmUrl: "https://www.openstreetmap.org/?mlat=27.3359&mlon=-82.5284#map=16/27.3359/-82.5284",
+    outreachPitch: "Hi Ringling Dental Team — one application to compare equipment & expansion funding...",
+    smsDraft: "Hi Ringling Dental, Brandon Reta-Cantu ((941) 289-8661)...",
+    coldCallOpener: "Hi, this is Brandon Reta-Cantu...",
+    emailBreakup: "Closing the loop...",
+    source: "Florida Verified Registry",
+    stage: "Underwriting / Offer",
+    dealValue: 185000,
+    commissionPct: 6,
+    notes: "Reviewing 2 participating funder offers via Bank Breezy for $185K operatory buildout.",
+    consentVerified: true,
+    dncCleared: true,
+    lastTouchAt: "Yesterday, 4:30 PM",
+  },
+  {
+    id: "crm-seed-3",
+    name: "Siesta Key Coastal Kitchen & Hospitality",
+    category: "2. Full-Service Restaurants (NAICS 722511)",
+    naicsCode: "722511",
+    city: "Sarasota, FL",
+    address: "5212 Ocean Blvd, Sarasota, FL 34242",
+    phone: "(941) 349-6810",
+    website: "https://siestacoastalkitchen.com",
+    email: "gm@siestacoastalkitchen.com",
+    lat: 27.2741,
+    lon: -82.5629,
+    estimatedCapitalNeed: "$50,000 – $150,000",
+    sbaMedianTicket: "#1 FL SBA Loan Count",
+    recommendedProduct: "Patio Remodel & Peak Season Working Capital",
+    buyingSignals: "High daily card volume; outdoor seating expansion",
+    aiScore: 91,
+    aiReasoning: "91/100 Fit. Strong card volume ideal for fast Bank Breezy working capital.",
+    googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=Siesta+Key+Coastal+Kitchen+Sarasota+FL",
+    osmUrl: "https://www.openstreetmap.org/?mlat=27.2741&mlon=-82.5629#map=16/27.2741/-82.5629",
+    outreachPitch: "Hi Siesta Key Coastal Kitchen...",
+    smsDraft: "Hi Siesta Key Kitchen...",
+    coldCallOpener: "Hi, this is Brandon Reta-Cantu...",
+    emailBreakup: "Closing the loop...",
+    source: "Florida Verified Registry",
+    stage: "Funded & Closed",
+    dealValue: 65000,
+    commissionPct: 8,
+    notes: "Funded $65K seasonal working capital + patio kitchen upgrade! Renewal check in 4 months.",
+    consentVerified: true,
+    dncCleared: true,
+    lastTouchAt: "3 days ago",
+  },
+];
+
 interface AIHealth {
   connected: boolean;
   endpoint: string;
@@ -64,7 +196,7 @@ interface AIHealth {
 
 export default function NexoraCommandSystem() {
   const [activeTab, setActiveTab] = useState<
-    "scanner" | "pipeline" | "brands" | "compliance" | "inquiries"
+    "scanner" | "pipeline" | "gosom" | "brands" | "compliance" | "inquiries"
   >("scanner");
 
   const [city, setCity] = useState("Sarasota, FL");
@@ -83,7 +215,19 @@ export default function NexoraCommandSystem() {
   );
   const [aiHealth, setAiHealth] = useState<AIHealth | null>(null);
 
-  const [savedPipeline, setSavedPipeline] = useState<FloridaLead[]>([]);
+  // Built-in CRM State
+  const [crmDeals, setCrmDeals] = useState<CrmDeal[]>(DEFAULT_SEEDED_CRM_DEALS);
+  const [showAddDealModal, setShowAddDealModal] = useState(false);
+  const [newDealForm, setNewDealForm] = useState({
+    name: "",
+    city: "Sarasota, FL",
+    phone: "",
+    email: "",
+    dealValue: 75000,
+    commissionPct: 7,
+    notes: "",
+  });
+
   const [inquiries, setInquiries] = useState<Array<Record<string, unknown>>>([]);
   const [copiedId, setCopiedId] = useState<string | null>(null);
 
@@ -94,10 +238,13 @@ export default function NexoraCommandSystem() {
       .catch(() => null);
 
     try {
-      const saved = JSON.parse(
-        localStorage.getItem("nexora_brc_pipeline") || "[]"
-      );
-      setSavedPipeline(saved);
+      const saved = localStorage.getItem("nexora_brc_crm_v2");
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          setCrmDeals(parsed);
+        }
+      }
       const inq = JSON.parse(
         localStorage.getItem("nexora_brc_inquiries") || "[]"
       );
@@ -112,6 +259,15 @@ export default function NexoraCommandSystem() {
       ""
     );
   }, []);
+
+  function persistCrm(updated: CrmDeal[]) {
+    setCrmDeals(updated);
+    try {
+      localStorage.setItem("nexora_brc_crm_v2", JSON.stringify(updated));
+    } catch {
+      // ignore
+    }
+  }
 
   async function runLeadScan(
     targetCity: string,
@@ -142,17 +298,95 @@ export default function NexoraCommandSystem() {
     }
   }
 
-  function saveToPipeline(lead: FloridaLead) {
-    const exists = savedPipeline.some((p) => p.id === lead.id);
-    const updated = exists
-      ? savedPipeline.filter((p) => p.id !== lead.id)
-      : [lead, ...savedPipeline];
-    setSavedPipeline(updated);
-    try {
-      localStorage.setItem("nexora_brc_pipeline", JSON.stringify(updated));
-    } catch {
-      // ignore
+  function addOrToggleLeadInCrm(lead: FloridaLead) {
+    const exists = crmDeals.some((p) => p.id === lead.id);
+    if (exists) {
+      persistCrm(crmDeals.filter((p) => p.id !== lead.id));
+    } else {
+      const newCrmDeal: CrmDeal = {
+        ...lead,
+        stage: "New Lead",
+        dealValue: 85000,
+        commissionPct: 7,
+        notes: `Imported from ${lead.source} (${lead.city}). Recommended: ${lead.recommendedProduct}`,
+        consentVerified: false,
+        dncCleared: true,
+        lastTouchAt: "Just added",
+      };
+      persistCrm([newCrmDeal, ...crmDeals]);
     }
+  }
+
+  function updateDealStage(id: string, stage: CrmStage) {
+    persistCrm(
+      crmDeals.map((d) =>
+        d.id === id ? { ...d, stage, lastTouchAt: "Updated just now" } : d
+      )
+    );
+  }
+
+  function updateDealField(
+    id: string,
+    field: keyof CrmDeal,
+    value: string | number | boolean
+  ) {
+    persistCrm(
+      crmDeals.map((d) => (d.id === id ? { ...d, [field]: value } : d))
+    );
+  }
+
+  function deleteDeal(id: string) {
+    persistCrm(crmDeals.filter((d) => d.id !== id));
+  }
+
+  function handleCreateCustomDeal(e: React.FormEvent) {
+    e.preventDefault();
+    const custom: CrmDeal = {
+      id: `custom-${Date.now()}`,
+      name: newDealForm.name,
+      category: category,
+      naicsCode: "238220",
+      city: newDealForm.city,
+      address: newDealForm.city,
+      phone: newDealForm.phone || "(941) 555-0199",
+      website: "",
+      email: newDealForm.email,
+      lat: 27.3364,
+      lon: -82.5307,
+      estimatedCapitalNeed: `$${newDealForm.dealValue.toLocaleString()}`,
+      sbaMedianTicket: "$150,000",
+      recommendedProduct: "Commercial Working Capital / Equipment",
+      buyingSignals: "Direct Inbound / Referral",
+      aiScore: 92,
+      aiReasoning: "Direct advisor entry.",
+      googleMapsUrl: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+        newDealForm.name + " " + newDealForm.city
+      )}`,
+      osmUrl: "https://www.openstreetmap.org",
+      outreachPitch: `Hi ${newDealForm.name}, start your single Bank Breezy application here: https://bankbreezy.com/funding/brandonretacantu`,
+      smsDraft: `Hi ${newDealForm.name}, Brandon Reta-Cantu here ((941) 289-8661). Application link: https://bankbreezy.com/funding/brandonretacantu`,
+      coldCallOpener: "",
+      emailBreakup: "",
+      source: "Florida Verified Registry",
+      stage: "New Lead",
+      dealValue: Number(newDealForm.dealValue) || 75000,
+      commissionPct: Number(newDealForm.commissionPct) || 7,
+      notes: newDealForm.notes || "Direct prospect added by Brandon.",
+      consentVerified: true,
+      dncCleared: true,
+      lastTouchAt: "Just created",
+    };
+    persistCrm([custom, ...crmDeals]);
+    setShowAddDealModal(false);
+    setNewDealForm({
+      name: "",
+      city: "Sarasota, FL",
+      phone: "",
+      email: "",
+      dealValue: 75000,
+      commissionPct: 7,
+      notes: "",
+    });
   }
 
   function copyText(id: string, text: string) {
@@ -199,8 +433,21 @@ export default function NexoraCommandSystem() {
     a.click();
   }
 
+  // CRM Pipeline Totals
+  const totalPipelineVolume = crmDeals.reduce((acc, d) => acc + (d.dealValue || 0), 0);
+  const totalProjectedCommission = crmDeals.reduce(
+    (acc, d) => acc + Math.round(((d.dealValue || 0) * (d.commissionPct || 7)) / 100),
+    0
+  );
+  const fundedCommission = crmDeals
+    .filter((d) => d.stage === "Funded & Closed")
+    .reduce(
+      (acc, d) => acc + Math.round(((d.dealValue || 0) * (d.commissionPct || 7)) / 100),
+      0
+    );
+
   return (
-    <div className="min-h-screen bg-[#12100E] text-[#F4EFEA]">
+    <div className="min-h-screen bg-[#12100E] text-[#F4EFEA] pb-16">
       {/* TOP COMMAND HEADER WITH REALISTIC SARASOTA BAY AERIAL BANNER */}
       <header className="relative border-b border-[#D6D0C8]/15 overflow-hidden">
         <div className="absolute inset-0">
@@ -212,26 +459,26 @@ export default function NexoraCommandSystem() {
           <div className="absolute inset-0 bg-gradient-to-r from-[#12100E] via-[#12100E]/90 to-[#12100E]/75" />
         </div>
 
-        <div className="relative z-10 mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-5 py-6 lg:px-8">
-          <div className="flex items-center gap-4">
-            <BrandLogoMark conceptId="sovereign-crest" size={46} />
+        <div className="relative z-10 mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-4 py-5 sm:px-5 lg:px-8">
+          <div className="flex items-center gap-3.5">
+            <BrandLogoMark conceptId="sovereign-crest" size={44} />
             <div>
               <div className="flex flex-wrap items-center gap-2">
                 <span className="font-mono text-[10px] font-bold uppercase tracking-widest bg-[#85303E] text-white px-2.5 py-0.5">
                   THE SOVEREIGN CREST · CONCEPT 01 (SELECTED)
                 </span>
-                <span className="font-mono text-[11px] text-[#C8A96A]">
-                  NEXORA FLORIDA GEO-LEAD &amp; AI UNDERWRITING OS
+                <span className="hidden sm:inline font-mono text-[11px] text-[#C8A96A]">
+                  NEXORA FLORIDA GEO-LEAD, AI &amp; BUILT-IN CRM OS
                 </span>
               </div>
-              <h1 className="text-xl sm:text-2xl font-extrabold tracking-tight mt-1">
+              <h1 className="text-lg sm:text-2xl font-extrabold tracking-tight mt-1">
                 Brandon Reta-Cantu · Commercial Funding Command Center
               </h1>
             </div>
           </div>
 
-          <div className="flex flex-wrap items-center gap-3">
-            <div className="hidden md:flex items-center gap-2 bg-black/50 backdrop-blur-xs border border-white/15 px-3.5 py-2 text-xs font-mono">
+          <div className="flex flex-wrap items-center gap-2.5">
+            <div className="hidden md:flex items-center gap-2 bg-black/50 backdrop-blur-xs border border-white/15 px-3 py-1.5 text-xs font-mono">
               <span
                 className={`h-2 w-2 rounded-full ${
                   aiHealth?.connected !== false
@@ -239,9 +486,9 @@ export default function NexoraCommandSystem() {
                     : "bg-amber-400"
                 }`}
               />
-              <span className="text-white/70">AI Engine:</span>
+              <span className="text-white/70">AI:</span>
               <span className="text-[#C8A96A] font-semibold">
-                ai.mongodb.com ({aiHealth?.model || "voyage-finance-2"})
+                {aiHealth?.model || "voyage-finance-2"}
               </span>
             </div>
 
@@ -249,115 +496,120 @@ export default function NexoraCommandSystem() {
               href="/Brandon_Reta_Cantu_5_Brand_Concepts_NEXORA.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 bg-black/50 hover:bg-black/70 border border-white/20 px-3.5 py-2 text-xs font-mono uppercase tracking-wider"
+              className="inline-flex items-center gap-1.5 bg-black/50 hover:bg-black/70 border border-white/20 px-3 py-2 text-xs font-mono uppercase tracking-wider"
             >
               <FileText className="w-3.5 h-3.5 text-[#C8A96A]" />
-              5 Brand Concepts PDF
+              <span className="hidden sm:inline">5 Brand Concepts</span> PDF
             </a>
 
             <Link
               href="/"
-              className="inline-flex items-center gap-1.5 bg-[#85303E] hover:bg-[#9c3949] text-white px-4 py-2 text-xs font-bold uppercase tracking-wider"
+              className="inline-flex items-center gap-1.5 bg-[#85303E] hover:bg-[#9c3949] text-white px-3.5 py-2 text-xs font-bold uppercase tracking-wider"
             >
               <ArrowLeft className="w-3.5 h-3.5" />
-              Luxury Landing Page
+              Landing Page
             </Link>
           </div>
         </div>
       </header>
 
       {/* SUB-NAVIGATION TABS & METRICS BAR */}
-      <div className="border-b border-white/10 bg-[#1E1518] px-5 lg:px-8">
-        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4">
-          <div className="flex items-center gap-1 overflow-x-auto py-2">
+      <div className="border-b border-white/10 bg-[#1E1518] px-4 sm:px-5 lg:px-8">
+        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3">
+          <div className="flex items-center gap-1 overflow-x-auto py-2 no-scrollbar">
             <button
               onClick={() => setActiveTab("scanner")}
-              className={`px-4 py-2 text-xs font-mono uppercase tracking-wider cursor-pointer transition-colors ${
+              className={`px-3.5 py-2 text-xs font-mono uppercase tracking-wider whitespace-nowrap cursor-pointer transition-colors ${
                 activeTab === "scanner"
                   ? "bg-[#85303E] text-white font-bold"
                   : "text-white/65 hover:text-white hover:bg-white/5"
               }`}
             >
-              1. Top-15 Florida Maps Lead Scanner ({leads.length})
+              1. Florida Lead Scanner ({leads.length})
             </button>
             <button
               onClick={() => setActiveTab("pipeline")}
-              className={`px-4 py-2 text-xs font-mono uppercase tracking-wider cursor-pointer transition-colors ${
+              className={`px-3.5 py-2 text-xs font-mono uppercase tracking-wider whitespace-nowrap cursor-pointer transition-colors ${
                 activeTab === "pipeline"
                   ? "bg-[#85303E] text-white font-bold"
                   : "text-white/65 hover:text-white hover:bg-white/5"
               }`}
             >
-              2. Saved CRM Pipeline ({savedPipeline.length})
+              2. Built-In Deal CRM &amp; Commissions ({crmDeals.length})
+            </button>
+            <button
+              onClick={() => setActiveTab("gosom")}
+              className={`px-3.5 py-2 text-xs font-mono uppercase tracking-wider whitespace-nowrap cursor-pointer transition-colors ${
+                activeTab === "gosom"
+                  ? "bg-[#85303E] text-white font-bold"
+                  : "text-white/65 hover:text-white hover:bg-white/5"
+              }`}
+            >
+              3. gosom Google Maps Scraper CLI
             </button>
             <button
               onClick={() => setActiveTab("brands")}
-              className={`px-4 py-2 text-xs font-mono uppercase tracking-wider cursor-pointer transition-colors ${
+              className={`px-3.5 py-2 text-xs font-mono uppercase tracking-wider whitespace-nowrap cursor-pointer transition-colors ${
                 activeTab === "brands"
                   ? "bg-[#85303E] text-white font-bold"
                   : "text-white/65 hover:text-white hover:bg-white/5"
               }`}
             >
-              3. Brand Identity Studio (Concept #1 Selected)
+              4. Brand Studio (#1 Active)
             </button>
             <button
               onClick={() => setActiveTab("compliance")}
-              className={`px-4 py-2 text-xs font-mono uppercase tracking-wider cursor-pointer transition-colors ${
+              className={`px-3.5 py-2 text-xs font-mono uppercase tracking-wider whitespace-nowrap cursor-pointer transition-colors ${
                 activeTab === "compliance"
                   ? "bg-[#85303E] text-white font-bold"
                   : "text-white/65 hover:text-white hover:bg-white/5"
               }`}
             >
-              4. Florida HB 1353 &amp; TCPA Compliance Kit
+              5. Florida HB 1353 Compliance
             </button>
             <button
               onClick={() => setActiveTab("inquiries")}
-              className={`px-4 py-2 text-xs font-mono uppercase tracking-wider cursor-pointer transition-colors ${
+              className={`px-3.5 py-2 text-xs font-mono uppercase tracking-wider whitespace-nowrap cursor-pointer transition-colors ${
                 activeTab === "inquiries"
                   ? "bg-[#85303E] text-white font-bold"
                   : "text-white/65 hover:text-white hover:bg-white/5"
               }`}
             >
-              5. Inbound Website Leads ({inquiries.length})
+              6. Website Inquiries ({inquiries.length})
             </button>
-          </div>
-
-          <div className="hidden xl:flex items-center gap-5 text-xs font-mono text-white/65 py-2">
-            <span>
-              Advisor: <strong className="text-white">{CLIENT_TRUTH.name}</strong>
-            </span>
-            <span>
-              ID: <strong className="text-[#C8A96A]">{CLIENT_TRUTH.agentId}</strong>
-            </span>
-            <span>
-              Direct: <strong className="text-white">{CLIENT_TRUTH.phone}</strong>
-            </span>
           </div>
         </div>
       </div>
 
       {/* MAIN WORKSPACE CONTENT */}
-      <main className="mx-auto max-w-7xl px-5 py-8 lg:px-8">
+      <main className="mx-auto max-w-7xl px-4 py-6 sm:px-5 sm:py-8 lg:px-8">
+        {/* TAB 1: FLORIDA LEAD SCANNER */}
         {activeTab === "scanner" && (
           <div className="space-y-6">
-            {/* SEARCH / FILTER BAR */}
-            <div className="border border-white/12 bg-[#1C1917] p-5">
+            <div className="border border-white/12 bg-[#1C1917] p-4 sm:p-5">
               <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-white/10">
                 <div>
-                  <span className="text-[11px] font-mono uppercase tracking-widest text-[#9A5B42]">
+                  <span className="text-[11px] font-mono uppercase tracking-widest text-[#C8A96A]">
                     FREE OPENSTREETMAP OVERPASS + GOOGLE MAPS + SBA 7(A)/504 FLORIDA BENCHMARKS
                   </span>
-                  <h2 className="text-xl font-bold mt-0.5">
+                  <h2 className="text-lg sm:text-xl font-bold mt-0.5">
                     Top 15 High-Converting Florida Commercial Funding Categories
                   </h2>
                 </div>
                 <div className="flex items-center gap-2">
                   <button
+                    onClick={() => setActiveTab("pipeline")}
+                    className="inline-flex items-center gap-1.5 bg-[#85303E] text-white px-3.5 py-2 text-xs font-mono uppercase tracking-wider cursor-pointer"
+                  >
+                    <Briefcase className="w-3.5 h-3.5" />
+                    Open Built-In CRM ({crmDeals.length})
+                  </button>
+                  <button
                     onClick={() => exportCsv(leads)}
                     disabled={!leads.length}
                     className="inline-flex items-center gap-1.5 bg-white/10 hover:bg-white/15 px-3.5 py-2 text-xs font-mono uppercase tracking-wider cursor-pointer disabled:opacity-40"
                   >
-                    <Download className="w-3.5 h-3.5 text-[#9A5B42]" />
+                    <Download className="w-3.5 h-3.5 text-[#C8A96A]" />
                     Export CSV
                   </button>
                 </div>
@@ -371,7 +623,7 @@ export default function NexoraCommandSystem() {
                   <select
                     value={city}
                     onChange={(e) => setCity(e.target.value)}
-                    className="w-full bg-[#12100E] border border-white/15 px-3 py-2.5 text-sm outline-none focus:border-[#9A5B42]"
+                    className="w-full bg-[#12100E] border border-white/15 px-3 py-2.5 text-sm outline-none focus:border-[#C8A96A]"
                   >
                     {FLORIDA_CITIES.map((c) => (
                       <option key={c} value={c}>
@@ -388,7 +640,7 @@ export default function NexoraCommandSystem() {
                   <select
                     value={category}
                     onChange={(e) => setCategory(e.target.value)}
-                    className="w-full bg-[#12100E] border border-white/15 px-3 py-2.5 text-sm outline-none focus:border-[#9A5B42]"
+                    className="w-full bg-[#12100E] border border-white/15 px-3 py-2.5 text-sm outline-none focus:border-[#C8A96A]"
                   >
                     {BUSINESS_CATEGORIES.map((cat) => (
                       <option key={cat} value={cat}>
@@ -402,7 +654,7 @@ export default function NexoraCommandSystem() {
                   <button
                     onClick={() => runLeadScan(city, category, keyword)}
                     disabled={loading}
-                    className="w-full bg-[#9A5B42] hover:bg-[#b0694d] text-white font-bold text-xs uppercase tracking-wider py-3 px-4 inline-flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
+                    className="w-full bg-[#85303E] hover:bg-[#9c3949] text-white font-bold text-xs uppercase tracking-wider py-3 px-4 inline-flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
                   >
                     {loading ? (
                       <>
@@ -422,28 +674,27 @@ export default function NexoraCommandSystem() {
 
             {/* LEADS RESULTS + LIVE INSPECTOR */}
             <div className="grid gap-6 lg:grid-cols-[1.12fr_0.88fr]">
-              {/* Left Lead Cards List */}
               <div className="space-y-3">
-                <div className="flex items-center justify-between text-xs font-mono text-white/65 px-1">
+                <div className="flex flex-wrap items-center justify-between gap-2 text-xs font-mono text-white/65 px-1">
                   <span>
                     Showing {leads.length} commercial prospects in{" "}
                     <strong className="text-white">{city}</strong>
                   </span>
-                  <span className="text-[#D6D0C8]">
+                  <span className="text-[#C8A96A]">
                     Ranked by {aiEngineLabel}
                   </span>
                 </div>
 
                 {leads.map((lead) => {
                   const isSelected = selectedLead?.id === lead.id;
-                  const inPipeline = savedPipeline.some((p) => p.id === lead.id);
+                  const inPipeline = crmDeals.some((p) => p.id === lead.id);
                   return (
                     <div
                       key={lead.id}
                       onClick={() => setSelectedLead(lead)}
                       className={`p-4 border transition-all cursor-pointer ${
                         isSelected
-                          ? "bg-[#24201D] border-[#9A5B42]"
+                          ? "bg-[#241B1E] border-[#C8A96A]"
                           : "bg-[#1C1917] border-white/10 hover:border-white/25"
                       }`}
                     >
@@ -453,7 +704,7 @@ export default function NexoraCommandSystem() {
                             <span className="font-mono text-[10px] uppercase px-2 py-0.5 bg-white/10 text-white/80">
                               {lead.source}
                             </span>
-                            <span className="font-mono text-[10px] text-[#D6D0C8]">
+                            <span className="font-mono text-[10px] text-[#C8A96A]">
                               NAICS {lead.naicsCode} · {lead.estimatedCapitalNeed}
                             </span>
                           </div>
@@ -461,7 +712,7 @@ export default function NexoraCommandSystem() {
                             {lead.name}
                           </h3>
                           <p className="text-xs text-white/65 flex items-center gap-1.5 mt-1">
-                            <MapPin className="w-3.5 h-3.5 text-[#9A5B42] shrink-0" />
+                            <MapPin className="w-3.5 h-3.5 text-[#85303E] shrink-0" />
                             {lead.address}
                           </p>
                         </div>
@@ -480,7 +731,7 @@ export default function NexoraCommandSystem() {
                       <div className="mt-3 pt-3 border-t border-white/10 flex flex-wrap items-center justify-between gap-2 text-xs">
                         <div className="flex flex-wrap items-center gap-3 font-mono text-[11px] text-white/80">
                           <span className="inline-flex items-center gap-1">
-                            <Phone className="w-3 h-3 text-[#9A5B42]" />
+                            <Phone className="w-3 h-3 text-[#C8A96A]" />
                             {lead.phone}
                           </span>
                           <a
@@ -488,33 +739,24 @@ export default function NexoraCommandSystem() {
                             target="_blank"
                             rel="noopener noreferrer"
                             onClick={(e) => e.stopPropagation()}
-                            className="inline-flex items-center gap-1 text-[#D6D0C8] hover:underline"
+                            className="inline-flex items-center gap-1 text-[#C8A96A] hover:underline"
                           >
                             Google Maps <ExternalLink className="w-3 h-3" />
-                          </a>
-                          <a
-                            href={lead.osmUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            onClick={(e) => e.stopPropagation()}
-                            className="inline-flex items-center gap-1 text-white/60 hover:underline"
-                          >
-                            OSM Pin <ExternalLink className="w-3 h-3" />
                           </a>
                         </div>
 
                         <button
                           onClick={(e) => {
                             e.stopPropagation();
-                            saveToPipeline(lead);
+                            addOrToggleLeadInCrm(lead);
                           }}
                           className={`px-2.5 py-1 text-[11px] font-mono uppercase cursor-pointer ${
                             inPipeline
                               ? "bg-emerald-600/30 text-emerald-200 border border-emerald-500/40"
-                              : "bg-white/10 hover:bg-white/20 text-white"
+                              : "bg-[#85303E] hover:bg-[#9c3949] text-white"
                           }`}
                         >
-                          {inPipeline ? "✓ Saved in CRM" : "+ Save to CRM"}
+                          {inPipeline ? "✓ In Built-In CRM" : "+ Push to CRM"}
                         </button>
                       </div>
                     </div>
@@ -522,13 +764,13 @@ export default function NexoraCommandSystem() {
                 })}
               </div>
 
-              {/* Right Selected Lead Dossier, Live Map & 4 Proven Outreach Scripts */}
+              {/* Right Selected Lead Dossier */}
               <div>
                 {selectedLead ? (
-                  <div className="sticky top-6 border border-[#9A5B42]/60 bg-[#1C1917] p-6 space-y-5">
+                  <div className="sticky top-6 border border-[#C8A96A]/50 bg-[#1C1917] p-5 sm:p-6 space-y-5">
                     <div className="flex items-start justify-between gap-3 border-b border-white/10 pb-4">
                       <div>
-                        <span className="font-mono text-[10px] uppercase tracking-widest text-[#9A5B42]">
+                        <span className="font-mono text-[10px] uppercase tracking-widest text-[#C8A96A]">
                           AI UNDERWRITING &amp; OUTREACH DOSSIER
                         </span>
                         <h3 className="text-xl font-extrabold mt-1">
@@ -539,16 +781,15 @@ export default function NexoraCommandSystem() {
                         </p>
                       </div>
                       <button
-                        onClick={() => saveToPipeline(selectedLead)}
-                        className="bg-[#9A5B42] hover:bg-[#b0694d] text-white px-3 py-1.5 text-xs font-mono uppercase tracking-wider shrink-0 cursor-pointer"
+                        onClick={() => addOrToggleLeadInCrm(selectedLead)}
+                        className="bg-[#85303E] hover:bg-[#9c3949] text-white px-3 py-1.5 text-xs font-mono uppercase tracking-wider shrink-0 cursor-pointer"
                       >
-                        {savedPipeline.some((p) => p.id === selectedLead.id)
-                          ? "✓ In Pipeline"
-                          : "+ Save Lead"}
+                        {crmDeals.some((p) => p.id === selectedLead.id)
+                          ? "✓ In CRM"
+                          : "+ Push to CRM"}
                       </button>
                     </div>
 
-                    {/* Interactive OpenStreetMap Embed */}
                     <div className="overflow-hidden border border-white/15 h-44 bg-black relative">
                       <iframe
                         title={`Map of ${selectedLead.name}`}
@@ -568,10 +809,9 @@ export default function NexoraCommandSystem() {
                       />
                     </div>
 
-                    {/* AI Score, SBA Benchmark & Buying Signals */}
                     <div className="bg-[#12100E] border border-white/10 p-4 space-y-2 text-xs">
                       <div className="flex items-center justify-between font-mono">
-                        <span className="text-[#9A5B42] uppercase">
+                        <span className="text-[#C8A96A] uppercase">
                           MongoDB AI + Florida SBA Benchmark
                         </span>
                         <span className="text-emerald-400 font-bold">
@@ -590,13 +830,12 @@ export default function NexoraCommandSystem() {
                       </p>
                     </div>
 
-                    {/* Direct Action Buttons */}
                     <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 text-xs font-mono">
                       <a
                         href={`tel:${selectedLead.phone.replace(/[^0-9]/g, "")}`}
                         className="bg-white/10 hover:bg-white/15 border border-white/15 py-2.5 px-3 text-center flex items-center justify-center gap-1.5"
                       >
-                        <Phone className="w-3.5 h-3.5 text-[#9A5B42]" />
+                        <Phone className="w-3.5 h-3.5 text-[#C8A96A]" />
                         Call Lead
                       </a>
                       <a
@@ -605,7 +844,7 @@ export default function NexoraCommandSystem() {
                         rel="noopener noreferrer"
                         className="bg-white/10 hover:bg-white/15 border border-white/15 py-2.5 px-3 text-center flex items-center justify-center gap-1.5"
                       >
-                        <MapPin className="w-3.5 h-3.5 text-[#9A5B42]" />
+                        <MapPin className="w-3.5 h-3.5 text-[#C8A96A]" />
                         Google Maps
                       </a>
                       <a
@@ -614,22 +853,21 @@ export default function NexoraCommandSystem() {
                         }?subject=${encodeURIComponent(
                           `A simpler way to compare funding for ${selectedLead.name}`
                         )}&body=${encodeURIComponent(selectedLead.outreachPitch)}`}
-                        className="bg-[#9A5B42] hover:bg-[#b0694d] text-white py-2.5 px-3 text-center flex items-center justify-center gap-1.5 col-span-2 sm:col-span-1"
+                        className="bg-[#85303E] hover:bg-[#9c3949] text-white py-2.5 px-3 text-center flex items-center justify-center gap-1.5 col-span-2 sm:col-span-1"
                       >
                         <Send className="w-3.5 h-3.5" />
                         Send Email
                       </a>
                     </div>
 
-                    {/* 4-Channel Script Selector (From NEXORA B2B Sales Strategist) */}
                     <div className="space-y-2">
-                      <div className="flex items-center justify-between border-b border-white/10 pb-2">
-                        <div className="flex gap-1">
+                      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-2">
+                        <div className="flex flex-wrap gap-1">
                           {[
-                            { id: "email", label: "1. First Email" },
-                            { id: "call", label: "2. Cold Call" },
-                            { id: "sms", label: "3. SMS (Consent)" },
-                            { id: "breakup", label: "4. Breakup Email" },
+                            { id: "email", label: "1. Email" },
+                            { id: "call", label: "2. Call Script" },
+                            { id: "sms", label: "3. SMS" },
+                            { id: "breakup", label: "4. Breakup" },
                           ].map((t) => (
                             <button
                               key={t.id}
@@ -640,7 +878,7 @@ export default function NexoraCommandSystem() {
                               }
                               className={`px-2 py-1 text-[10px] font-mono uppercase cursor-pointer ${
                                 scriptTab === t.id
-                                  ? "bg-[#9A5B42] text-white font-bold"
+                                  ? "bg-[#85303E] text-white font-bold"
                                   : "bg-white/5 text-white/65 hover:text-white"
                               }`}
                             >
@@ -661,7 +899,7 @@ export default function NexoraCommandSystem() {
                                 : selectedLead.emailBreakup;
                             copyText(`script-${selectedLead.id}`, content);
                           }}
-                          className="inline-flex items-center gap-1 text-xs font-mono text-[#D6D0C8] hover:underline cursor-pointer"
+                          className="inline-flex items-center gap-1 text-xs font-mono text-[#C8A96A] hover:underline cursor-pointer"
                         >
                           {copiedId === `script-${selectedLead.id}` ? (
                             <>
@@ -684,9 +922,6 @@ export default function NexoraCommandSystem() {
                           ? selectedLead.smsDraft
                           : selectedLead.emailBreakup}
                       </pre>
-                      <p className="text-[10px] font-mono text-white/50">
-                        *Compliance Rule: Call/email first (8 AM–8 PM local FL time, ≤3 calls/24h); send SMS only after express consent.
-                      </p>
                     </div>
                   </div>
                 ) : null}
@@ -695,91 +930,438 @@ export default function NexoraCommandSystem() {
           </div>
         )}
 
-        {/* TAB 2: SAVED PIPELINE */}
+        {/* TAB 2: FULL BUILT-IN COMMERCIAL FUNDING CRM & COMMISSION TRACKER */}
         {activeTab === "pipeline" && (
-          <div className="border border-white/10 bg-[#1C1917] p-6 space-y-5">
-            <div className="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-4">
-              <div>
-                <span className="font-mono text-xs uppercase text-[#9A5B42]">
-                  BRANDON RETA-CANTU · SAVED FLORIDA PROSPECTS
+          <div className="space-y-6">
+            {/* CRM KPI TELEMETRY BAR */}
+            <div className="grid gap-4 sm:grid-cols-4">
+              <div className="border border-white/12 bg-[#1C1917] p-5">
+                <span className="font-mono text-[10px] uppercase tracking-widest text-white/60">
+                  ACTIVE CRM DEALS
                 </span>
-                <h2 className="text-2xl font-bold mt-1">
-                  Active Commercial Deal Pipeline ({savedPipeline.length})
-                </h2>
+                <p className="text-3xl font-extrabold mt-1">{crmDeals.length}</p>
+                <p className="text-xs text-[#C8A96A] font-mono mt-1">
+                  Across 5 Funding Stages
+                </p>
               </div>
-              {savedPipeline.length > 0 && (
-                <button
-                  onClick={() => exportCsv(savedPipeline)}
-                  className="bg-[#9A5B42] text-white px-4 py-2 text-xs font-mono uppercase tracking-wider inline-flex items-center gap-2 cursor-pointer"
-                >
-                  <Download className="w-4 h-4" />
-                  Export Saved CRM CSV
-                </button>
-              )}
+              <div className="border border-white/12 bg-[#1C1917] p-5">
+                <span className="font-mono text-[10px] uppercase tracking-widest text-white/60">
+                  TOTAL PIPELINE VOLUME
+                </span>
+                <p className="text-3xl font-extrabold mt-1">
+                  ${totalPipelineVolume.toLocaleString()}
+                </p>
+                <p className="text-xs text-white/60 font-mono mt-1">
+                  Est. Commercial Principal
+                </p>
+              </div>
+              <div className="border border-[#C8A96A]/40 bg-[#1C1917] p-5">
+                <span className="font-mono text-[10px] uppercase tracking-widest text-[#C8A96A]">
+                  PROJECTED BROKER COMMISSIONS
+                </span>
+                <p className="text-3xl font-extrabold text-[#C8A96A] mt-1">
+                  ${totalProjectedCommission.toLocaleString()}
+                </p>
+                <p className="text-xs text-white/60 font-mono mt-1">
+                  At 6%–8% Avg Bank Breezy Split
+                </p>
+              </div>
+              <div className="border border-emerald-500/40 bg-[#1C1917] p-5">
+                <span className="font-mono text-[10px] uppercase tracking-widest text-emerald-400">
+                  CLOSED &amp; FUNDED COMMISSIONS
+                </span>
+                <p className="text-3xl font-extrabold text-emerald-400 mt-1">
+                  ${fundedCommission.toLocaleString()}
+                </p>
+                <p className="text-xs text-white/60 font-mono mt-1">
+                  Ready for Payout / Renewal
+                </p>
+              </div>
             </div>
 
-            {savedPipeline.length === 0 ? (
-              <div className="py-12 text-center space-y-3">
-                <p className="text-white/70">
-                  No leads saved yet. Click <strong>+ Save to CRM</strong> on any
-                  Florida business in the scanner tab.
-                </p>
+            {/* CRM ACTION BAR */}
+            <div className="border border-white/12 bg-[#1C1917] p-5 flex flex-wrap items-center justify-between gap-4">
+              <div>
+                <span className="font-mono text-xs uppercase text-[#C8A96A]">
+                  ZERO-SUBSCRIPTION BUILT-IN DEAL CRM · OWNED BY BRANDON RETA-CANTU
+                </span>
+                <h2 className="text-xl sm:text-2xl font-bold mt-0.5">
+                  Commercial Deal Pipeline, Consent Flags &amp; Commission Tracker
+                </h2>
+              </div>
+              <div className="flex flex-wrap items-center gap-2.5">
                 <button
-                  onClick={() => setActiveTab("scanner")}
-                  className="bg-[#9A5B42] text-white px-4 py-2 text-xs font-bold uppercase tracking-wider cursor-pointer"
+                  onClick={() => setShowAddDealModal(!showAddDealModal)}
+                  className="bg-[#85303E] hover:bg-[#9c3949] text-white px-4 py-2.5 text-xs font-mono font-bold uppercase tracking-wider inline-flex items-center gap-1.5 cursor-pointer"
                 >
-                  Go to Florida Lead Scanner
+                  <Plus className="w-4 h-4" />
+                  Add Custom Deal
+                </button>
+                <button
+                  onClick={() => exportCsv(crmDeals)}
+                  className="bg-white/10 hover:bg-white/15 text-white px-4 py-2.5 text-xs font-mono uppercase tracking-wider inline-flex items-center gap-1.5 cursor-pointer"
+                >
+                  <Download className="w-4 h-4 text-[#C8A96A]" />
+                  Export CRM CSV
                 </button>
               </div>
-            ) : (
-              <div className="grid gap-4 md:grid-cols-2">
-                {savedPipeline.map((lead) => (
-                  <div
-                    key={lead.id}
-                    className="border border-white/15 bg-[#12100E] p-5 space-y-3"
+            </div>
+
+            {/* ADD CUSTOM DEAL MODAL / DRAWER */}
+            {showAddDealModal && (
+              <form
+                onSubmit={handleCreateCustomDeal}
+                className="border border-[#C8A96A] bg-[#1C1917] p-6 space-y-4"
+              >
+                <div className="flex items-center justify-between border-b border-white/10 pb-3">
+                  <h3 className="font-bold text-lg">
+                    Add New Florida Commercial Funding Deal
+                  </h3>
+                  <button
+                    type="button"
+                    onClick={() => setShowAddDealModal(false)}
+                    className="text-xs font-mono text-white/60 hover:text-white cursor-pointer"
                   >
-                    <div className="flex items-start justify-between">
+                    ✕ Close
+                  </button>
+                </div>
+                <div className="grid gap-4 sm:grid-cols-3">
+                  <div>
+                    <label className="block text-xs font-mono uppercase text-white/70 mb-1">
+                      Business Name *
+                    </label>
+                    <input
+                      type="text"
+                      required
+                      value={newDealForm.name}
+                      onChange={(e) =>
+                        setNewDealForm({ ...newDealForm, name: e.target.value })
+                      }
+                      className="w-full bg-[#12100E] border border-white/15 px-3 py-2 text-sm"
+                      placeholder="e.g. Suncoast Commercial Roofing"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-mono uppercase text-white/70 mb-1">
+                      Florida City
+                    </label>
+                    <input
+                      type="text"
+                      value={newDealForm.city}
+                      onChange={(e) =>
+                        setNewDealForm({ ...newDealForm, city: e.target.value })
+                      }
+                      className="w-full bg-[#12100E] border border-white/15 px-3 py-2 text-sm"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-mono uppercase text-white/70 mb-1">
+                      Phone Number
+                    </label>
+                    <input
+                      type="text"
+                      value={newDealForm.phone}
+                      onChange={(e) =>
+                        setNewDealForm({ ...newDealForm, phone: e.target.value })
+                      }
+                      className="w-full bg-[#12100E] border border-white/15 px-3 py-2 text-sm"
+                      placeholder="(941) 555-0144"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-mono uppercase text-white/70 mb-1">
+                      Estimated Funding Amount ($)
+                    </label>
+                    <input
+                      type="number"
+                      value={newDealForm.dealValue}
+                      onChange={(e) =>
+                        setNewDealForm({
+                          ...newDealForm,
+                          dealValue: Number(e.target.value),
+                        })
+                      }
+                      className="w-full bg-[#12100E] border border-white/15 px-3 py-2 text-sm"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-mono uppercase text-white/70 mb-1">
+                      Est. Commission (%)
+                    </label>
+                    <input
+                      type="number"
+                      value={newDealForm.commissionPct}
+                      onChange={(e) =>
+                        setNewDealForm({
+                          ...newDealForm,
+                          commissionPct: Number(e.target.value),
+                        })
+                      }
+                      className="w-full bg-[#12100E] border border-white/15 px-3 py-2 text-sm"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-mono uppercase text-white/70 mb-1">
+                      Deal Notes
+                    </label>
+                    <input
+                      type="text"
+                      value={newDealForm.notes}
+                      onChange={(e) =>
+                        setNewDealForm({ ...newDealForm, notes: e.target.value })
+                      }
+                      className="w-full bg-[#12100E] border border-white/15 px-3 py-2 text-sm"
+                      placeholder="Equipment or working capital goal..."
+                    />
+                  </div>
+                </div>
+                <button
+                  type="submit"
+                  className="bg-[#85303E] text-white px-5 py-2.5 text-xs font-mono font-bold uppercase tracking-wider cursor-pointer"
+                >
+                  Save Deal to CRM Pipeline
+                </button>
+              </form>
+            )}
+
+            {/* DEAL CARDS IN PIPELINE */}
+            <div className="space-y-4">
+              {crmDeals.map((deal) => {
+                const estCommission = Math.round(
+                  ((deal.dealValue || 0) * (deal.commissionPct || 7)) / 100
+                );
+                return (
+                  <div
+                    key={deal.id}
+                    className="border border-white/15 bg-[#1C1917] p-5 space-y-4"
+                  >
+                    <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b border-white/10 pb-4">
                       <div>
-                        <span className="font-mono text-[10px] text-[#9A5B42]">
-                          {lead.city} · NAICS {lead.naicsCode}
-                        </span>
-                        <h3 className="text-lg font-bold mt-0.5">{lead.name}</h3>
-                        <p className="text-xs text-white/65">{lead.address}</p>
+                        <div className="flex flex-wrap items-center gap-2">
+                          <span className="font-mono text-[10px] uppercase bg-[#85303E] text-white px-2 py-0.5 font-bold">
+                            {deal.stage}
+                          </span>
+                          <span className="font-mono text-xs text-[#C8A96A]">
+                            {deal.city} · NAICS {deal.naicsCode}
+                          </span>
+                          <span className="font-mono text-xs text-emerald-400">
+                            AI Fit: {deal.aiScore}/100
+                          </span>
+                          <span className="font-mono text-[11px] text-white/45">
+                            Last touch: {deal.lastTouchAt}
+                          </span>
+                        </div>
+                        <h3 className="text-xl font-bold mt-1.5">{deal.name}</h3>
+                        <p className="text-xs text-white/65">{deal.address}</p>
                       </div>
-                      <span className="font-mono text-xs font-bold text-emerald-400">
-                        {lead.aiScore}/100
-                      </span>
+
+                      {/* Stage Switcher Pills */}
+                      <div className="flex flex-wrap items-center gap-1.5">
+                        {CRM_STAGES.map((st) => (
+                          <button
+                            key={st}
+                            onClick={() => updateDealStage(deal.id, st)}
+                            className={`px-2.5 py-1.5 text-[10px] font-mono uppercase cursor-pointer transition-colors ${
+                              deal.stage === st
+                                ? "bg-[#C8A96A] text-black font-bold"
+                                : "bg-white/5 text-white/65 hover:bg-white/15"
+                            }`}
+                          >
+                            {st}
+                          </button>
+                        ))}
+                      </div>
                     </div>
-                    <div className="flex flex-wrap items-center gap-3 text-xs font-mono pt-2 border-t border-white/10">
-                      <a
-                        href={`tel:${lead.phone}`}
-                        className="text-[#D6D0C8] hover:underline"
-                      >
-                        {lead.phone}
-                      </a>
-                      <a
-                        href={lead.googleMapsUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-white/75 hover:underline"
-                      >
-                        Google Maps ↗
-                      </a>
-                      <button
-                        onClick={() => saveToPipeline(lead)}
-                        className="ml-auto text-red-400 hover:underline cursor-pointer"
-                      >
-                        Remove
-                      </button>
+
+                    {/* Deal Financials, Notes & Compliance Flags */}
+                    <div className="grid gap-4 md:grid-cols-4 items-center">
+                      <div className="bg-[#12100E] border border-white/10 p-3">
+                        <label className="block font-mono text-[10px] uppercase text-white/55">
+                          Target Deal Amount ($)
+                        </label>
+                        <input
+                          type="number"
+                          value={deal.dealValue}
+                          onChange={(e) =>
+                            updateDealField(
+                              deal.id,
+                              "dealValue",
+                              Number(e.target.value)
+                            )
+                          }
+                          className="bg-transparent text-lg font-extrabold text-white w-full outline-none mt-0.5"
+                        />
+                      </div>
+
+                      <div className="bg-[#12100E] border border-white/10 p-3">
+                        <label className="block font-mono text-[10px] uppercase text-white/55">
+                          Est. Commission ({deal.commissionPct}%)
+                        </label>
+                        <div className="flex items-center justify-between mt-0.5">
+                          <span className="text-lg font-extrabold text-[#C8A96A]">
+                            ${estCommission.toLocaleString()}
+                          </span>
+                          <input
+                            type="number"
+                            min={1}
+                            max={20}
+                            value={deal.commissionPct}
+                            onChange={(e) =>
+                              updateDealField(
+                                deal.id,
+                                "commissionPct",
+                                Number(e.target.value)
+                              )
+                            }
+                            className="w-14 bg-white/5 border border-white/15 px-1.5 py-0.5 text-xs font-mono text-right"
+                          />
+                        </div>
+                      </div>
+
+                      <div className="md:col-span-2 bg-[#12100E] border border-white/10 p-3">
+                        <label className="block font-mono text-[10px] uppercase text-white/55">
+                          Underwriting &amp; Call Notes
+                        </label>
+                        <input
+                          type="text"
+                          value={deal.notes}
+                          onChange={(e) =>
+                            updateDealField(deal.id, "notes", e.target.value)
+                          }
+                          className="bg-transparent text-xs text-white/90 w-full outline-none mt-1"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Bottom Action Bar */}
+                    <div className="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-white/10 text-xs font-mono">
+                      <div className="flex flex-wrap items-center gap-4">
+                        <a
+                          href={`tel:${deal.phone.replace(/[^0-9]/g, "")}`}
+                          className="inline-flex items-center gap-1.5 text-[#C8A96A] hover:underline"
+                        >
+                          <Phone className="w-3.5 h-3.5" />
+                          {deal.phone}
+                        </a>
+                        <a
+                          href={deal.googleMapsUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1 text-white/75 hover:underline"
+                        >
+                          Google Maps ↗
+                        </a>
+                        <label className="inline-flex items-center gap-1.5 text-[11px] text-white/75 cursor-pointer">
+                          <input
+                            type="checkbox"
+                            checked={deal.dncCleared}
+                            onChange={(e) =>
+                              updateDealField(
+                                deal.id,
+                                "dncCleared",
+                                e.target.checked
+                              )
+                            }
+                          />
+                          FL DNC Cleared
+                        </label>
+                        <label className="inline-flex items-center gap-1.5 text-[11px] text-white/75 cursor-pointer">
+                          <input
+                            type="checkbox"
+                            checked={deal.consentVerified}
+                            onChange={(e) =>
+                              updateDealField(
+                                deal.id,
+                                "consentVerified",
+                                e.target.checked
+                              )
+                            }
+                          />
+                          SMS Opt-In Verified
+                        </label>
+                      </div>
+
+                      <div className="flex items-center gap-3">
+                        <a
+                          href={CLIENT_TRUTH.applicationUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="bg-white/10 hover:bg-white/15 px-3 py-1.5 text-[11px] uppercase"
+                        >
+                          Open Bank Breezy App ↗
+                        </a>
+                        <button
+                          onClick={() => deleteDeal(deal.id)}
+                          className="text-red-400 hover:text-red-300 inline-flex items-center gap-1 cursor-pointer"
+                        >
+                          <Trash2 className="w-3.5 h-3.5" />
+                          Delete
+                        </button>
+                      </div>
                     </div>
                   </div>
-                ))}
-              </div>
-            )}
+                );
+              })}
+            </div>
           </div>
         )}
 
-        {/* TAB 3: 5 BRAND IDENTITY SYSTEMS */}
+        {/* TAB 3: GOSOM GOOGLE MAPS SCRAPER INTEGRATION */}
+        {activeTab === "gosom" && (
+          <div className="border border-white/15 bg-[#1C1917] p-6 space-y-6">
+            <div className="border-b border-white/10 pb-4 flex flex-col md:flex-row md:items-center justify-between gap-4">
+              <div>
+                <span className="font-mono text-xs uppercase text-[#C8A96A]">
+                  INSTALLED &amp; VERIFIED IN PROJECT · GOSOM/GOOGLE-MAPS-SCRAPER v1.18.1
+                </span>
+                <h2 className="text-2xl font-bold mt-1">
+                  Deep Google Maps Scraper Engine (Emails, Ratings, Reviews &amp; CIDs)
+                </h2>
+                <p className="text-xs text-white/70 mt-1 max-w-3xl">
+                  Both the agent skill (<code>.agents/skills/google-maps-scraper</code>) and the native binary (<code>tools/gosom/google_maps_scraper.exe</code>) are installed in your project workspace for high-volume bulk CSV/JSON crawls with automatic website email extraction.
+                </p>
+              </div>
+              <a
+                href="https://github.com/gosom/google-maps-scraper"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-[#85303E] text-white px-4 py-2.5 text-xs font-mono uppercase tracking-wider shrink-0 inline-flex items-center gap-1.5"
+              >
+                gosom Docs <ExternalLink className="w-3.5 h-3.5" />
+              </a>
+            </div>
+
+            <div className="grid gap-6 md:grid-cols-2">
+              <div className="bg-[#12100E] border border-white/10 p-5 space-y-3">
+                <div className="flex items-center gap-2 text-[#C8A96A] font-mono text-xs uppercase font-bold">
+                  <Terminal className="w-4 h-4" />
+                  1. Run Local Web UI Runner (Port 8080)
+                </div>
+                <p className="text-xs text-white/75 leading-relaxed">
+                  Launch the built-in <code>gosom</code> visual web interface locally on your machine to queue Florida cities, extract business emails from company websites (<code>-email</code>), and download full CSV sheets:
+                </p>
+                <pre className="bg-black border border-white/15 p-3 text-[11px] font-mono text-emerald-300 overflow-x-auto">
+                  {`.\\tools\\gosom\\google_maps_scraper.exe -web -addr ":8080" -data-folder ".\\tools\\gosom\\webdata"`}
+                </pre>
+              </div>
+
+              <div className="bg-[#12100E] border border-white/10 p-5 space-y-3">
+                <div className="flex items-center gap-2 text-[#C8A96A] font-mono text-xs uppercase font-bold">
+                  <Terminal className="w-4 h-4" />
+                  2. Docker Skill Bulk Crawl (Sarasota / Tampa / Miami)
+                </div>
+                <p className="text-xs text-white/75 leading-relaxed">
+                  Run the official Docker container with email extraction enabled for Brandon’s top 15 Florida NAICS queries:
+                </p>
+                <pre className="bg-black border border-white/15 p-3 text-[11px] font-mono text-emerald-300 overflow-x-auto">
+                  {`docker run --rm -v "$PWD/tools/gosom:/data" gosom/google-maps-scraper -input /data/test_queries.txt -results /data/sarasota_leads.csv -email -depth 2`}
+                </pre>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* TAB 4: 5 BRAND IDENTITY SYSTEMS */}
         {activeTab === "brands" && (
           <div className="space-y-6">
             <div className="border border-[#C8A96A]/60 bg-[#1C1917] p-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
@@ -842,7 +1424,9 @@ export default function NexoraCommandSystem() {
                       <div className="flex items-center justify-between">
                         <span className="font-mono text-xs text-[#C8A96A]">
                           CONCEPT {theme.number}{" "}
-                          {theme.id === "sovereign-crest" ? "(OFFICIAL SELECTED)" : ""}
+                          {theme.id === "sovereign-crest"
+                            ? "(OFFICIAL SELECTED)"
+                            : ""}
                         </span>
                         <div className="flex gap-1.5">
                           {[
@@ -870,7 +1454,7 @@ export default function NexoraCommandSystem() {
 
                   <div className="p-4 border-t border-white/10 bg-[#12100E] flex items-center justify-between text-xs font-mono">
                     <span className="text-white/60">Primary: {theme.primary}</span>
-                    <Link href="/" className="text-[#D6D0C8] hover:underline">
+                    <Link href="/" className="text-[#C8A96A] hover:underline">
                       Preview on Landing Page →
                     </Link>
                   </div>
@@ -880,11 +1464,11 @@ export default function NexoraCommandSystem() {
           </div>
         )}
 
-        {/* TAB 4: FLORIDA HB 1353 & TCPA COMPLIANCE KIT */}
+        {/* TAB 5: FLORIDA HB 1353 & TCPA COMPLIANCE KIT */}
         {activeTab === "compliance" && (
           <div className="border border-white/15 bg-[#1C1917] p-6 space-y-6">
             <div className="border-b border-white/10 pb-4">
-              <span className="font-mono text-xs uppercase text-[#9A5B42]">
+              <span className="font-mono text-xs uppercase text-[#C8A96A]">
                 NEXORA LEGAL &amp; RISK ANALYST DELIVERABLE (BRETA-FUNDING-DISCLAIMER)
               </span>
               <h2 className="text-2xl font-bold mt-1">
@@ -897,7 +1481,7 @@ export default function NexoraCommandSystem() {
 
             <div className="grid gap-6 md:grid-cols-2">
               <div className="bg-[#12100E] border border-white/10 p-5 space-y-3">
-                <div className="flex items-center gap-2 text-[#9A5B42] font-mono text-xs uppercase font-bold">
+                <div className="flex items-center gap-2 text-[#C8A96A] font-mono text-xs uppercase font-bold">
                   <CheckSquare className="w-4 h-4" />
                   Daily Outreach Guardrails (Florida FTSA / Telemarketing / TCPA)
                 </div>
@@ -914,8 +1498,8 @@ export default function NexoraCommandSystem() {
                   </li>
                   <li>
                     <strong>SMS / Text Rule:</strong> Do not cold-text cell
-                    numbers from Maps without prior consent. Call or email first,
-                    then text the Bank Breezy link when they say yes.
+                    numbers without prior consent. Call or email first, then
+                    text the Bank Breezy link when they say yes.
                   </li>
                   <li>
                     <strong>No Advance Fees:</strong> Never charge or collect an
@@ -926,7 +1510,7 @@ export default function NexoraCommandSystem() {
               </div>
 
               <div className="bg-[#12100E] border border-white/10 p-5 space-y-3">
-                <div className="flex items-center gap-2 text-[#9A5B42] font-mono text-xs uppercase font-bold">
+                <div className="flex items-center gap-2 text-[#C8A96A] font-mono text-xs uppercase font-bold">
                   <ShieldAlert className="w-4 h-4" />
                   Mandatory Independent Referral Disclosure
                 </div>
@@ -943,11 +1527,11 @@ export default function NexoraCommandSystem() {
           </div>
         )}
 
-        {/* TAB 5: INBOUND WEBSITE INQUIRIES */}
+        {/* TAB 6: INBOUND WEBSITE INQUIRIES */}
         {activeTab === "inquiries" && (
           <div className="border border-white/10 bg-[#1C1917] p-6 space-y-4">
             <div>
-              <span className="font-mono text-xs uppercase text-[#9A5B42]">
+              <span className="font-mono text-xs uppercase text-[#C8A96A]">
                 LIVE LANDING PAGE SUBMISSIONS
               </span>
               <h2 className="text-2xl font-bold mt-1">
@@ -967,11 +1551,11 @@ export default function NexoraCommandSystem() {
                     key={idx}
                     className="border border-white/15 bg-[#12100E] p-4 space-y-2"
                   >
-                    <div className="flex items-center justify-between">
+                    <div className="flex flex-wrap items-center justify-between gap-2">
                       <h3 className="font-bold text-base">
                         {String(inq.business || "")} — {String(inq.name || "")}
                       </h3>
-                      <span className="font-mono text-xs text-[#9A5B42]">
+                      <span className="font-mono text-xs text-[#C8A96A]">
                         {String(inq.phone || "")} · {String(inq.email || "")}
                       </span>
                     </div>

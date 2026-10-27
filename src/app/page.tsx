@@ -18,6 +18,8 @@ import {
   ChevronRight,
   Eye,
   Lock,
+  Menu,
+  X,
 } from "lucide-react";
 
 interface AIBriefResponse {
@@ -34,6 +36,7 @@ interface AIBriefResponse {
 export default function LuxuryLandingPage() {
   const [activeTheme, setActiveTheme] = useState<BrandTheme>(BRAND_THEMES[0]);
   const [showBrandDrawer, setShowBrandDrawer] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   // Calculator state
   const [capitalAmount, setCapitalAmount] = useState(125000);
@@ -329,7 +332,7 @@ export default function LuxuryLandingPage() {
             <Link
               href="/system"
               style={{ borderColor: activeTheme.border }}
-              className="border px-3 py-2.5 text-[11px] font-mono uppercase"
+              className="border px-3 py-2.5 text-[11px] font-mono font-bold uppercase"
             >
               OS
             </Link>
@@ -345,8 +348,94 @@ export default function LuxuryLandingPage() {
             >
               Apply
             </a>
+            <button
+              type="button"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              style={{ borderColor: activeTheme.border }}
+              aria-label="Toggle mobile menu"
+              className="border p-2 cursor-pointer"
+            >
+              {mobileMenuOpen ? (
+                <X className="w-5 h-5" />
+              ) : (
+                <Menu className="w-5 h-5" />
+              )}
+            </button>
           </div>
         </div>
+
+        {/* MOBILE DRAWER MENU */}
+        {mobileMenuOpen && (
+          <div
+            style={{
+              backgroundColor: activeTheme.card,
+              borderTop: `1px solid ${activeTheme.border}`,
+            }}
+            className="md:hidden px-5 py-5 space-y-4 shadow-xl"
+          >
+            <div className="flex flex-col space-y-3 text-sm font-bold">
+              <a
+                href="#how-it-works"
+                onClick={() => setMobileMenuOpen(false)}
+                className="py-1.5 border-b border-current/10"
+              >
+                01 · How it works
+              </a>
+              <a
+                href="#solutions"
+                onClick={() => setMobileMenuOpen(false)}
+                className="py-1.5 border-b border-current/10"
+              >
+                02 · Funding uses
+              </a>
+              <a
+                href="#calculator"
+                onClick={() => setMobileMenuOpen(false)}
+                className="py-1.5 border-b border-current/10"
+              >
+                03 · Capital Estimator
+              </a>
+              <a
+                href="#contact"
+                onClick={() => setMobileMenuOpen(false)}
+                className="py-1.5 border-b border-current/10"
+              >
+                04 · Contact Brandon
+              </a>
+              <Link
+                href="/system"
+                onClick={() => setMobileMenuOpen(false)}
+                className="py-1.5 border-b border-current/10 font-mono text-xs uppercase flex items-center justify-between"
+              >
+                <span>05 · Florida Geo-Lead &amp; AI Command OS</span>
+                <ArrowUpRight className="w-4 h-4" />
+              </Link>
+            </div>
+
+            <div className="grid grid-cols-2 gap-2.5 pt-2">
+              <a
+                href={CLIENT_TRUTH.phoneHref}
+                style={{ borderColor: activeTheme.border }}
+                className="border py-3 text-center text-xs font-mono font-bold uppercase flex items-center justify-center gap-1.5"
+              >
+                <Phone className="w-3.5 h-3.5" />
+                Call (941)
+              </a>
+              <a
+                href={CLIENT_TRUTH.applicationUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  backgroundColor: activeTheme.primary,
+                  color: activeTheme.primaryFg,
+                }}
+                className="py-3 text-center text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-1"
+              >
+                Apply Now <ArrowUpRight className="w-3.5 h-3.5" />
+              </a>
+            </div>
+          </div>
+        )}
       </header>
 
       <main>
@@ -1510,6 +1599,44 @@ export default function LuxuryLandingPage() {
             </div>
           </div>
         </footer>
+
+        {/* MOBILE STICKY ACTION BAR (1-TAP CALL, ADVISOR OS, START APPLICATION) */}
+        <div
+          style={{
+            backgroundColor: activeTheme.card,
+            borderTop: `1px solid ${activeTheme.border}`,
+          }}
+          className="fixed bottom-0 left-0 right-0 z-50 flex md:hidden items-center justify-between gap-2 px-3 py-2.5 shadow-2xl"
+        >
+          <a
+            href={CLIENT_TRUTH.phoneHref}
+            style={{ borderColor: activeTheme.border }}
+            className="border px-3 py-2.5 text-xs font-mono font-bold flex items-center justify-center gap-1.5 shrink-0"
+          >
+            <Phone className="w-3.5 h-3.5" style={{ color: activeTheme.primary }} />
+            Call
+          </a>
+          <Link
+            href="/system"
+            style={{ borderColor: activeTheme.border }}
+            className="border px-3 py-2.5 text-xs font-mono font-bold uppercase flex items-center justify-center gap-1 shrink-0"
+          >
+            <Compass className="w-3.5 h-3.5" />
+            Lead OS
+          </Link>
+          <a
+            href={CLIENT_TRUTH.applicationUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              backgroundColor: activeTheme.primary,
+              color: activeTheme.primaryFg,
+            }}
+            className="flex-1 py-2.5 px-3 text-center text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-1"
+          >
+            Start Application <ArrowUpRight className="w-3.5 h-3.5" />
+          </a>
+        </div>
       </main>
     </div>
   );
