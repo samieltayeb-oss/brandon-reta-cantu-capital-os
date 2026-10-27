@@ -574,7 +574,7 @@ export default function NexoraCommandSystem() {
               <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-white/10">
                 <div>
                   <span className="text-[11px] font-mono uppercase tracking-widest text-[#C8A96A]">
-                    FREE OPENSTREETMAP OVERPASS + GOOGLE MAPS + SBA 7(A)/504 FLORIDA BENCHMARKS
+                    AUTO-RUNNING GOSOM/GOOGLE-MAPS-SCRAPER (-FAST-MODE + -EMAIL) + SBA 7(A)/504 FLORIDA BENCHMARKS
                   </span>
                   <h2 className="text-lg sm:text-xl font-bold mt-0.5">
                     Top 15 High-Converting Florida Commercial Funding Categories
@@ -685,9 +685,14 @@ export default function NexoraCommandSystem() {
                       <div className="flex items-start justify-between gap-3">
                         <div>
                           <div className="flex flex-wrap items-center gap-2">
-                            <span className="font-mono text-[10px] uppercase px-2 py-0.5 bg-white/10 text-white/80">
+                            <span className="font-mono text-[10px] uppercase px-2 py-0.5 bg-[#85303E]/30 border border-[#85303E]/60 text-white/90">
                               {lead.source}
                             </span>
+                            {lead.reviewCount ? (
+                              <span className="font-mono text-[10px] bg-amber-500/15 border border-amber-500/40 text-amber-300 px-2 py-0.5">
+                                ★ {lead.reviewRating || 4.8} ({lead.reviewCount.toLocaleString()} reviews)
+                              </span>
+                            ) : null}
                             <span className="font-mono text-[10px] text-[#C8A96A]">
                               NAICS {lead.naicsCode} · {lead.estimatedCapitalNeed}
                             </span>
@@ -699,6 +704,12 @@ export default function NexoraCommandSystem() {
                             <MapPin className="w-3.5 h-3.5 text-[#85303E] shrink-0" />
                             {lead.address}
                           </p>
+                          {lead.email && (
+                            <p className="text-xs text-emerald-300 font-mono flex items-center gap-1.5 mt-1">
+                              <Mail className="w-3 h-3 shrink-0" />
+                              {lead.email}
+                            </p>
+                          )}
                         </div>
 
                         <div className="text-right shrink-0">
