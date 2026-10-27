@@ -105,6 +105,7 @@ const DEFAULT_SEEDED_CRM_DEALS: CrmDeal[] = [
     osmUrl: "https://www.openstreetmap.org/?mlat=27.3368&mlon=-82.5321#map=16/27.3368/-82.5321",
     outreachPitch: "Hi Gulf Coast Precision HVAC Team — I help Sarasota contractors compare equipment & working capital options through one simple Bank Breezy application: https://bankbreezy.com/funding/brandonretacantu",
     smsDraft: "Hi Gulf Coast HVAC, Brandon Reta-Cantu here ((941) 289-8661). Here is the single-application Bank Breezy link we discussed: https://bankbreezy.com/funding/brandonretacantu Reply STOP to opt out.",
+    smsFollowUp: "Gulf Coast HVAC, Brandon again. No hard sell, just an option: one application through Bank Breezy, offers from several funders side by side, and you decide if any make sense. https://bankbreezy.com/funding/brandonretacantu Reply STOP to opt out.",
     coldCallOpener: "Hi, this is Brandon Reta-Cantu here in Florida...",
     emailBreakup: "Closing the loop for Gulf Coast Precision HVAC...",
     source: "Florida Verified Registry",
@@ -138,6 +139,7 @@ const DEFAULT_SEEDED_CRM_DEALS: CrmDeal[] = [
     osmUrl: "https://www.openstreetmap.org/?mlat=27.3359&mlon=-82.5284#map=16/27.3359/-82.5284",
     outreachPitch: "Hi Ringling Dental Team — one application to compare equipment & expansion funding...",
     smsDraft: "Hi Ringling Dental, Brandon Reta-Cantu ((941) 289-8661)...",
+    smsFollowUp: "Ringling Dental, Brandon again. No hard sell, just an option: https://bankbreezy.com/funding/brandonretacantu Reply STOP to opt out.",
     coldCallOpener: "Hi, this is Brandon Reta-Cantu...",
     emailBreakup: "Closing the loop...",
     source: "Florida Verified Registry",
@@ -171,6 +173,7 @@ const DEFAULT_SEEDED_CRM_DEALS: CrmDeal[] = [
     osmUrl: "https://www.openstreetmap.org/?mlat=27.2741&mlon=-82.5629#map=16/27.2741/-82.5629",
     outreachPitch: "Hi Siesta Key Coastal Kitchen...",
     smsDraft: "Hi Siesta Key Kitchen...",
+    smsFollowUp: "Siesta Key Kitchen, Brandon again. No hard sell: https://bankbreezy.com/funding/brandonretacantu Reply STOP to opt out.",
     coldCallOpener: "Hi, this is Brandon Reta-Cantu...",
     emailBreakup: "Closing the loop...",
     source: "Florida Verified Registry",
@@ -208,7 +211,7 @@ export default function NexoraCommandSystem() {
   const [leads, setLeads] = useState<FloridaLead[]>([]);
   const [selectedLead, setSelectedLead] = useState<FloridaLead | null>(null);
   const [scriptTab, setScriptTab] = useState<
-    "email" | "sms" | "call" | "breakup"
+    "email" | "sms" | "sms2" | "call" | "breakup"
   >("email");
   const [aiEngineLabel, setAiEngineLabel] = useState(
     "rerank-2 + voyage-finance-2 (ai.mongodb.com)"
@@ -365,6 +368,7 @@ export default function NexoraCommandSystem() {
       osmUrl: "https://www.openstreetmap.org",
       outreachPitch: `Hi ${newDealForm.name}, start your single Bank Breezy application here: https://bankbreezy.com/funding/brandonretacantu`,
       smsDraft: `Hi ${newDealForm.name}, Brandon Reta-Cantu here ((941) 289-8661). Application link: https://bankbreezy.com/funding/brandonretacantu`,
+      smsFollowUp: `${newDealForm.name}, Brandon again. No hard sell, just an option: https://bankbreezy.com/funding/brandonretacantu Reply STOP to opt out.`,
       coldCallOpener: "",
       emailBreakup: "",
       source: "Florida Verified Registry",
@@ -865,15 +869,21 @@ export default function NexoraCommandSystem() {
                         <div className="flex flex-wrap gap-1">
                           {[
                             { id: "email", label: "1. Email" },
-                            { id: "call", label: "2. Call Script" },
-                            { id: "sms", label: "3. SMS" },
-                            { id: "breakup", label: "4. Breakup" },
+                            { id: "call", label: "2. Call Opener" },
+                            { id: "sms", label: "3. SMS 1" },
+                            { id: "sms2", label: "4. SMS Follow-Up" },
+                            { id: "breakup", label: "5. Breakup" },
                           ].map((t) => (
                             <button
                               key={t.id}
                               onClick={() =>
                                 setScriptTab(
-                                  t.id as "email" | "sms" | "call" | "breakup"
+                                  t.id as
+                                    | "email"
+                                    | "sms"
+                                    | "sms2"
+                                    | "call"
+                                    | "breakup"
                                 )
                               }
                               className={`px-2 py-1 text-[10px] font-mono uppercase cursor-pointer ${
@@ -896,6 +906,8 @@ export default function NexoraCommandSystem() {
                                 ? selectedLead.coldCallOpener
                                 : scriptTab === "sms"
                                 ? selectedLead.smsDraft
+                                : scriptTab === "sms2"
+                                ? selectedLead.smsFollowUp
                                 : selectedLead.emailBreakup;
                             copyText(`script-${selectedLead.id}`, content);
                           }}
@@ -920,6 +932,8 @@ export default function NexoraCommandSystem() {
                           ? selectedLead.coldCallOpener
                           : scriptTab === "sms"
                           ? selectedLead.smsDraft
+                          : scriptTab === "sms2"
+                          ? selectedLead.smsFollowUp
                           : selectedLead.emailBreakup}
                       </pre>
                     </div>

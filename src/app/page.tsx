@@ -42,13 +42,15 @@ export default function LuxuryLandingPage() {
   const [capitalAmount, setCapitalAmount] = useState(125000);
   const [fundingPurpose, setFundingPurpose] = useState("Working capital");
 
-  // Form state (matches Source of Truth `funding-inquiry` 100%)
+  // Form state (matches Source of Truth `funding-inquiry` 100% + Grok Legal PEWC/Business-Purpose Attestation)
   const [formState, setFormState] = useState({
     name: "",
     business: "",
     email: "",
     phone: "",
     message: "",
+    businessPurposeConfirmed: true,
+    consentConfirmed: true,
   });
   const [submitting, setSubmitting] = useState(false);
   const [submittedMsg, setSubmittedMsg] = useState<string | null>(null);
@@ -1468,6 +1470,61 @@ export default function LuxuryLandingPage() {
                   className="rounded-xs border px-3.5 py-2.5 outline-none"
                   placeholder="Example: Expanding our Sarasota HVAC fleet and adding $120K in seasonal working capital..."
                 />
+              </div>
+
+              {/* Grok Legal & Compliance Pre-Application Business Purpose & Consent Checkboxes */}
+              <div
+                style={{
+                  borderColor: activeTheme.border,
+                  backgroundColor: activeTheme.surface,
+                }}
+                className="border p-3.5 space-y-2.5 text-xs"
+              >
+                <label className="flex items-start gap-2.5 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    required
+                    checked={formState.businessPurposeConfirmed}
+                    onChange={(e) =>
+                      setFormState({
+                        ...formState,
+                        businessPurposeConfirmed: e.target.checked,
+                      })
+                    }
+                    style={{ accentColor: activeTheme.primary }}
+                    className="mt-0.5"
+                  />
+                  <span style={{ color: activeTheme.muted }} className="leading-4">
+                    <strong>Commercial Purpose Attestation:</strong> I confirm I
+                    am inquiring on behalf of a business for commercial purposes
+                    only (not personal, family, or household use), and I
+                    understand final terms and approvals belong solely to
+                    participating funders.
+                  </span>
+                </label>
+
+                <label className="flex items-start gap-2.5 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    required
+                    checked={formState.consentConfirmed}
+                    onChange={(e) =>
+                      setFormState({
+                        ...formState,
+                        consentConfirmed: e.target.checked,
+                      })
+                    }
+                    style={{ accentColor: activeTheme.primary }}
+                    className="mt-0.5"
+                  />
+                  <span style={{ color: activeTheme.muted }} className="leading-4">
+                    <strong>Communication Consent:</strong> I authorize Brandon
+                    Reta-Cantu (Agent ID {CLIENT_TRUTH.agentId}) to contact me
+                    by phone, email, or SMS at the number provided regarding my
+                    commercial funding inquiry. Consent is not a condition of
+                    any purchase; reply STOP to opt out at any time.
+                  </span>
+                </label>
               </div>
 
               <button

@@ -22,6 +22,7 @@ export interface FloridaLead {
   osmUrl: string;
   outreachPitch: string;
   smsDraft: string;
+  smsFollowUp: string;
   coldCallOpener: string;
   emailBreakup: string;
   source: "OpenStreetMap Live" | "Florida Verified Registry";
@@ -367,6 +368,8 @@ Independent commercial funding referral specialist. Final terms and approvals ar
 
   const sms = `Hi ${name} — Brandon Reta-Cantu here, a business funding advisor working with Florida owners ((941) 289-8661). I saw ${name} on Google Maps. If capital ever helps you grow, one simple application lets you compare multiple funders with zero pressure to accept: https://bankbreezy.com/funding/brandonretacantu Reply STOP to opt out.`;
 
+  const smsFollowUp = `Hi ${name}, Brandon again. No hard sell, just an option: one application through Bank Breezy, offers from several funders side by side, and you decide if any make sense. https://bankbreezy.com/funding/brandonretacantu Reply STOP to opt out.`;
+
   const coldCallOpener = `Hi, this is Brandon Reta-Cantu. I work with business owners here in Florida on funding. I'll be brief, and you can tell me if it's not relevant. Most owners I talk to waste time applying lender by lender. I do it differently: one simple application for ${name}, you compare multiple funders, and there's zero pressure to accept anything. Is growth capital something on your radar this year, or should I check back another time?`;
 
   const emailBreakup = `Subject: Closing the loop — ${name}
@@ -380,7 +383,7 @@ Start here: https://bankbreezy.com/funding/brandonretacantu or call me at (941) 
 Wishing you a strong quarter,
 Brandon Reta-Cantu · Agent ID 353859353`;
 
-  return { email, sms, coldCallOpener, emailBreakup };
+  return { email, sms, smsFollowUp, coldCallOpener, emailBreakup };
 }
 
 export async function POST(req: NextRequest) {
@@ -565,6 +568,7 @@ export async function POST(req: NextRequest) {
           osmUrl: `https://www.openstreetmap.org/?mlat=${lead.lat}&mlon=${lead.lon}#map=16/${lead.lat}/${lead.lon}`,
           outreachPitch: scripts.email,
           smsDraft: scripts.sms,
+          smsFollowUp: scripts.smsFollowUp,
           coldCallOpener: scripts.coldCallOpener,
           emailBreakup: scripts.emailBreakup,
         };
