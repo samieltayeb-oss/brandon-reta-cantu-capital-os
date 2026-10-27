@@ -110,13 +110,13 @@ export default function LuxuryLandingPage() {
       }}
       className="min-h-screen transition-colors duration-300"
     >
-      {/* TOP EXECUTIVE COMMAND & BRAND CONCEPT SWITCHER BAR */}
+      {/* TOP EXECUTIVE BAR */}
       <div
         style={{
           backgroundColor: activeTheme.isDark ? "#05070B" : "#1E1518",
           borderBottom: `1px solid ${activeTheme.border}`,
         }}
-        className="text-white px-4 py-2.5 text-xs"
+        className="text-white px-4 py-2 text-xs"
       >
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3 lg:px-8">
           <div className="flex flex-wrap items-center gap-3">
@@ -127,49 +127,14 @@ export default function LuxuryLandingPage() {
               }}
               className="px-2.5 py-0.5 font-mono text-[10px] font-bold uppercase tracking-widest rounded-xs"
             >
-              NEXORA LUXURY EDITION
+              COMMERCIAL CAPITAL ADVISORY
             </span>
             <span className="hidden sm:inline text-white/75 font-mono text-[11px]">
-              Active Identity:{" "}
-              <strong className="text-white">
-                {activeTheme.number} · {activeTheme.name}
-              </strong>
+              Brandon Reta-Cantu · Agent ID {CLIENT_TRUTH.agentId} · {CLIENT_TRUTH.phone}
             </span>
-            <div className="flex items-center gap-1 bg-white/10 p-1 rounded-sm">
-              {BRAND_THEMES.map((t) => (
-                <button
-                  key={t.id}
-                  onClick={() => setActiveTheme(t)}
-                  title={`${t.number}: ${t.name}`}
-                  className={`px-2 py-0.5 text-[10px] font-mono uppercase tracking-wider transition-all rounded-xs cursor-pointer ${
-                    activeTheme.id === t.id
-                      ? "bg-white text-black font-bold shadow-xs"
-                      : "text-white/70 hover:text-white hover:bg-white/10"
-                  }`}
-                >
-                  #{t.number}
-                </button>
-              ))}
-            </div>
-            <button
-              onClick={() => setShowBrandDrawer(!showBrandDrawer)}
-              className="inline-flex items-center gap-1 text-[11px] font-mono text-[#C8A96A] hover:underline cursor-pointer"
-            >
-              <Eye className="w-3.5 h-3.5" />
-              {showBrandDrawer ? "Hide Brand Studio" : "Inspect 5 Brand Systems"}
-            </button>
           </div>
 
           <div className="flex items-center gap-4">
-            <a
-              href="/Brandon_Reta_Cantu_5_Brand_Concepts_NEXORA.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-[11px] font-mono text-[#C8A96A] hover:text-white transition-colors"
-            >
-              <FileText className="w-3.5 h-3.5" />
-              Download 5-Logo Masterbook (PDF)
-            </a>
             <Link
               href="/system"
               style={{
@@ -183,79 +148,6 @@ export default function LuxuryLandingPage() {
             </Link>
           </div>
         </div>
-
-        {/* EXPANDABLE 5-BRAND CONCEPT STUDIO */}
-        {showBrandDrawer && (
-          <div className="mx-auto max-w-7xl mt-3 pt-3 border-t border-white/15 lg:px-8 pb-2">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
-              <div>
-                <p className="text-xs font-mono uppercase tracking-widest text-[#C8A96A]">
-                  LIVE INTERACTIVE BRAND SYSTEM SELECTOR · CLICK ANY CONCEPT TO APPLY SITE-WIDE
-                </p>
-                <p className="text-xs text-white/70">
-                  Brandon can test all 5 complete branding systems live on this luxury landing page and download the 7-page executive PDF masterbook.
-                </p>
-              </div>
-              <a
-                href="/Brandon_Reta_Cantu_5_Brand_Concepts_NEXORA.pdf"
-                download
-                className="shrink-0 bg-white text-black px-3.5 py-1.5 text-xs font-bold uppercase tracking-wider rounded-xs hover:bg-white/90"
-              >
-                Download PDF Masterbook
-              </a>
-            </div>
-            <div className="grid gap-3 sm:grid-cols-5">
-              {BRAND_THEMES.map((theme) => {
-                const selected = theme.id === activeTheme.id;
-                return (
-                  <button
-                    key={theme.id}
-                    onClick={() => setActiveTheme(theme)}
-                    className={`text-left p-3 rounded-sm border transition-all cursor-pointer flex flex-col justify-between ${
-                      selected
-                        ? "border-[#C8A96A] bg-white/12 ring-1 ring-[#C8A96A]"
-                        : "border-white/15 bg-white/5 hover:bg-white/10"
-                    }`}
-                  >
-                    <div>
-                      <div className="flex items-center justify-between gap-2">
-                        <span className="font-mono text-[10px] text-[#C8A96A]">
-                          CONCEPT {theme.number}
-                        </span>
-                        <div className="flex items-center gap-1">
-                          <span
-                            className="w-3 h-3 rounded-full border border-white/30"
-                            style={{ backgroundColor: theme.primary }}
-                          />
-                          <span
-                            className="w-3 h-3 rounded-full border border-white/30"
-                            style={{ backgroundColor: theme.accent }}
-                          />
-                          <span
-                            className="w-3 h-3 rounded-full border border-white/30"
-                            style={{ backgroundColor: theme.gold }}
-                          />
-                        </div>
-                      </div>
-                      <p className="font-bold text-sm mt-1.5 text-white">
-                        {theme.name}
-                      </p>
-                      <p className="text-[11px] text-white/65 mt-1 line-clamp-2">
-                        {theme.rationale}
-                      </p>
-                    </div>
-                    <div className="mt-3 pt-2 border-t border-white/10 flex items-center justify-between text-[10px] font-mono">
-                      <span className="text-white/60">{theme.primary}</span>
-                      <span className="text-[#C8A96A] font-semibold">
-                        {selected ? "● ACTIVE" : "ACTIVATE →"}
-                      </span>
-                    </div>
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-        )}
       </div>
 
       {/* MAIN NAVIGATION HEADER (100% Source of Truth + Luxury Polish) */}
@@ -1632,7 +1524,7 @@ export default function LuxuryLandingPage() {
               </p>
               <p className="font-mono text-[11px] opacity-65">
                 Agent ID {CLIENT_TRUTH.agentId} · {CLIENT_TRUTH.phone} ·{" "}
-                {CLIENT_TRUTH.email} · Identity System: 01 · The Sovereign Crest
+                {CLIENT_TRUTH.email}
               </p>
             </div>
             <div className="shrink-0 md:text-right">
@@ -1640,17 +1532,19 @@ export default function LuxuryLandingPage() {
               <p style={{ color: activeTheme.muted }}>
                 Business funding guidance
               </p>
-              <div className="mt-2 flex md:justify-end gap-4 font-mono text-[11px]">
+              <div className="mt-2 flex md:justify-end items-center gap-4 font-mono text-[11px]">
                 <Link href="/system" className="underline hover:opacity-80">
                   Florida Lead Engine
                 </Link>
+                <span>·</span>
                 <a
-                  href="/Brandon_Reta_Cantu_5_Brand_Concepts_NEXORA.pdf"
+                  href="https://nexorayyc.io"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="underline hover:opacity-80"
+                  style={{ color: activeTheme.primary }}
+                  className="font-bold uppercase tracking-wider hover:underline"
                 >
-                  5 Brand Concepts PDF
+                  BUILT BY NEXORA
                 </a>
               </div>
             </div>

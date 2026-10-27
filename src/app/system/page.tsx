@@ -496,22 +496,12 @@ export default function NexoraCommandSystem() {
               </span>
             </div>
 
-            <a
-              href="/Brandon_Reta_Cantu_5_Brand_Concepts_NEXORA.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 bg-black/50 hover:bg-black/70 border border-white/20 px-3 py-2 text-xs font-mono uppercase tracking-wider"
-            >
-              <FileText className="w-3.5 h-3.5 text-[#C8A96A]" />
-              <span className="hidden sm:inline">5 Brand Concepts</span> PDF
-            </a>
-
             <Link
               href="/"
               className="inline-flex items-center gap-1.5 bg-[#85303E] hover:bg-[#9c3949] text-white px-3.5 py-2 text-xs font-bold uppercase tracking-wider"
             >
               <ArrowLeft className="w-3.5 h-3.5" />
-              Landing Page
+              LANDING PAGE
             </Link>
           </div>
         </div>
@@ -552,16 +542,6 @@ export default function NexoraCommandSystem() {
               3. gosom Google Maps Scraper CLI
             </button>
             <button
-              onClick={() => setActiveTab("brands")}
-              className={`px-3.5 py-2 text-xs font-mono uppercase tracking-wider whitespace-nowrap cursor-pointer transition-colors ${
-                activeTab === "brands"
-                  ? "bg-[#85303E] text-white font-bold"
-                  : "text-white/65 hover:text-white hover:bg-white/5"
-              }`}
-            >
-              4. Brand Studio (#1 Active)
-            </button>
-            <button
               onClick={() => setActiveTab("compliance")}
               className={`px-3.5 py-2 text-xs font-mono uppercase tracking-wider whitespace-nowrap cursor-pointer transition-colors ${
                 activeTab === "compliance"
@@ -569,7 +549,7 @@ export default function NexoraCommandSystem() {
                   : "text-white/65 hover:text-white hover:bg-white/5"
               }`}
             >
-              5. Florida HB 1353 Compliance
+              4. Florida HB 1353 Compliance
             </button>
             <button
               onClick={() => setActiveTab("inquiries")}
@@ -579,7 +559,7 @@ export default function NexoraCommandSystem() {
                   : "text-white/65 hover:text-white hover:bg-white/5"
               }`}
             >
-              6. Website Inquiries ({inquiries.length})
+              5. Website Inquiries ({inquiries.length})
             </button>
           </div>
         </div>
@@ -1375,110 +1355,7 @@ export default function NexoraCommandSystem() {
           </div>
         )}
 
-        {/* TAB 4: 5 BRAND IDENTITY SYSTEMS */}
-        {activeTab === "brands" && (
-          <div className="space-y-6">
-            <div className="border border-[#C8A96A]/60 bg-[#1C1917] p-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
-              <div>
-                <span className="font-mono text-xs uppercase tracking-widest text-[#C8A96A]">
-                  SELECTED MASTER IDENTITY: CONCEPT 01 · THE SOVEREIGN CREST
-                </span>
-                <h2 className="text-2xl font-extrabold mt-1">
-                  5 Complete Logo &amp; Brand Identity Systems
-                </h2>
-                <p className="text-sm text-white/70 mt-1 max-w-2xl">
-                  Concept 01 (The Sovereign Crest — Imperial Crimson #85303E, Executive Slate #33415C &amp; Reserve Gold #C8A96A) is locked in as Brandon’s official brand system.
-                </p>
-              </div>
-              <a
-                href="/Brandon_Reta_Cantu_5_Brand_Concepts_NEXORA.pdf"
-                download
-                className="bg-[#85303E] text-white px-5 py-3 text-xs font-mono font-bold uppercase tracking-wider inline-flex items-center gap-2 shrink-0"
-              >
-                <Download className="w-4 h-4" />
-                Download 5-Concept PDF
-              </a>
-            </div>
-
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {BRAND_THEMES.map((theme) => (
-                <div
-                  key={theme.id}
-                  className={`border bg-[#1C1917] overflow-hidden flex flex-col justify-between ${
-                    theme.id === "sovereign-crest"
-                      ? "border-[#C8A96A] ring-1 ring-[#C8A96A]"
-                      : "border-white/15"
-                  }`}
-                >
-                  <div>
-                    <div
-                      style={{
-                        backgroundColor: theme.bg,
-                        color: theme.text,
-                        borderBottom: `1px solid ${theme.border}`,
-                      }}
-                      className="p-8 flex flex-col items-center justify-center text-center min-h-[210px]"
-                    >
-                      <BrandLogoMark conceptId={theme.id} size={74} />
-                      <p
-                        style={{ fontFamily: theme.headingFont }}
-                        className="mt-4 text-lg font-extrabold uppercase tracking-wider"
-                      >
-                        {CLIENT_TRUTH.name}
-                      </p>
-                      <p
-                        style={{ color: theme.primary }}
-                        className="font-mono text-[10px] uppercase tracking-[0.22em] mt-0.5"
-                      >
-                        {theme.name}
-                      </p>
-                    </div>
-
-                    <div className="p-5 space-y-3">
-                      <div className="flex items-center justify-between">
-                        <span className="font-mono text-xs text-[#C8A96A]">
-                          CONCEPT {theme.number}{" "}
-                          {theme.id === "sovereign-crest"
-                            ? "(OFFICIAL SELECTED)"
-                            : ""}
-                        </span>
-                        <div className="flex gap-1.5">
-                          {[
-                            theme.bg,
-                            theme.primary,
-                            theme.accent,
-                            theme.gold,
-                            theme.text,
-                          ].map((hex, i) => (
-                            <span
-                              key={i}
-                              title={hex}
-                              style={{ backgroundColor: hex }}
-                              className="w-4 h-4 border border-white/25"
-                            />
-                          ))}
-                        </div>
-                      </div>
-                      <h3 className="text-lg font-bold">{theme.name}</h3>
-                      <p className="text-xs text-white/70 leading-relaxed">
-                        {theme.rationale}
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="p-4 border-t border-white/10 bg-[#12100E] flex items-center justify-between text-xs font-mono">
-                    <span className="text-white/60">Primary: {theme.primary}</span>
-                    <Link href="/" className="text-[#C8A96A] hover:underline">
-                      Preview on Landing Page →
-                    </Link>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* TAB 5: FLORIDA HB 1353 & TCPA COMPLIANCE KIT */}
+        {/* TAB 4: FLORIDA HB 1353 & TCPA COMPLIANCE KIT */}
         {activeTab === "compliance" && (
           <div className="border border-white/15 bg-[#1C1917] p-6 space-y-6">
             <div className="border-b border-white/10 pb-4">
@@ -1541,7 +1418,7 @@ export default function NexoraCommandSystem() {
           </div>
         )}
 
-        {/* TAB 6: INBOUND WEBSITE INQUIRIES */}
+        {/* TAB 5: INBOUND WEBSITE INQUIRIES */}
         {activeTab === "inquiries" && (
           <div className="border border-white/10 bg-[#1C1917] p-6 space-y-4">
             <div>
@@ -1583,6 +1460,37 @@ export default function NexoraCommandSystem() {
           </div>
         )}
       </main>
+
+      {/* SYSTEM FOOTER */}
+      <footer className="mx-auto max-w-7xl px-4 pt-8 pb-6 sm:px-5 lg:px-8 border-t border-white/10 mt-10">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/65">
+          <div className="flex flex-wrap items-center gap-3 font-mono">
+            <span>
+              © {new Date().getFullYear()} {CLIENT_TRUTH.name} (Agent ID{" "}
+              {CLIENT_TRUTH.agentId})
+            </span>
+            <span className="text-white/25">|</span>
+            <span>{CLIENT_TRUTH.phone}</span>
+            <span className="text-white/25">|</span>
+            <span>{CLIENT_TRUTH.email}</span>
+          </div>
+
+          <div className="flex items-center gap-4 font-mono uppercase tracking-wider">
+            <Link href="/" className="hover:text-white transition-colors">
+              LANDING PAGE
+            </Link>
+            <span className="text-white/25">|</span>
+            <a
+              href="https://nexorayyc.io"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-bold text-[#C8A96A] hover:underline"
+            >
+              BUILT BY NEXORA
+            </a>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
