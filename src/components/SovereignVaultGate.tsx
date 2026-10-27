@@ -18,7 +18,7 @@ interface SovereignVaultGateProps {
   onUnlock: () => void;
 }
 
-const VALID_PASSCODE = "Nexora2022";
+const VALID_PASSCODE = "NEXORA@2006";
 
 export function SovereignVaultGate({ onUnlock }: SovereignVaultGateProps) {
   const [passcode, setPasscode] = useState("");
