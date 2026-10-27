@@ -664,7 +664,7 @@ export default function NexoraCommandSystem() {
                     ) : (
                       <>
                         <Search className="w-4 h-4" />
-                        Scan Free Leads Now
+                        SCAN LEADS NOW
                       </>
                     )}
                   </button>
